@@ -86,6 +86,13 @@ import UIKit
         }
     }
     
+    @IBInspectable public var cornerRadius: CGFloat = 4.0 {
+        didSet {
+            layer.cornerRadius = cornerRadius
+            clipsToBounds = true
+        }
+    }
+    
     private let leftButton = UIButton()
     private let rightButton = UIButton()
     private let label = UILabel()
@@ -121,6 +128,9 @@ import UIKit
         label.backgroundColor = labelBackgroundColor
         label.font = labelFont
         addSubview(label)
+        
+        layer.cornerRadius = cornerRadius
+        clipsToBounds = true
     }
     
     public override func layoutSubviews() {
