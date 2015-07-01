@@ -8,11 +8,15 @@
 
 import UIKit
 
-public class GMStepper: UIView {
+public class GMStepper: UIControl {
     public var value = 0 {
         didSet {
             value = min(maximumValue, max(minimumValue, value))
             label.text = String(value)
+            
+            if oldValue != value {
+                sendActionsForControlEvents(.ValueChanged)
+            }
         }
     }
     

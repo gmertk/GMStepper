@@ -10,16 +10,15 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    @IBOutlet weak var stepper: GMStepper!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        stepper.addTarget(self, action: "stepperValueChanged:", forControlEvents: .ValueChanged)
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    func stepperValueChanged(stepper: GMStepper) {
+        print(stepper.value)
     }
-
-
 }
 

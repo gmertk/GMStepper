@@ -25,14 +25,6 @@
                                     <constraint firstAttribute="height" constant="44" id="bMh-qb-O1H"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LHM-6l-lrt" customClass="GMStepper" customModule="GMStepper" customModuleProvider="target">
-                                <rect key="frame" x="20" y="323" width="391" height="209"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rA3-ct-Qsh" customClass="GMStepper" customModule="GMStepper" customModuleProvider="target">
-                                <rect key="frame" x="20" y="129" width="240" height="128"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -40,6 +32,9 @@
                             <constraint firstItem="myb-yU-Jdq" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="xo4-e0-e0r"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="stepper" destination="myb-yU-Jdq" id="B3e-dV-hSv"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
