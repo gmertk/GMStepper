@@ -9,6 +9,16 @@
 import UIKit
 
 class GMStepper: UIView {
+    var value = 0 {
+        didSet {
+            value = min(maximumValue, max(minimumValue, value))
+            label.text = String(value)
+        }
+    }
+    
+    var minimumValue = 0
+    var maximumValue = 10
+    
     let leftButton = UIButton()
     let rightButton = UIButton()
     let label = UILabel()
@@ -26,6 +36,7 @@ class GMStepper: UIView {
         rightButton.addTarget(self, action: "rightButtonTapped:", forControlEvents: .TouchDown)
         
         label.textAlignment = .Center
+        label.text = String(value)
         
         addSubview(leftButton)
         addSubview(rightButton)
@@ -46,10 +57,10 @@ class GMStepper: UIView {
     }
     
     func leftButtonTapped(button: UIButton) {
-        
+        value -= 1
     }
 
     func rightButtonTapped(button: UIButton) {
-        
+        value += 1
     }
 }
