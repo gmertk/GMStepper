@@ -17,9 +17,22 @@ public class GMStepper: UIView {
     }
     
     public var minimumValue = 0
-    
     public var maximumValue = 10
     
+    public var leftButtonText = "-"
+    public var rightButtonText = "+"
+    
+    public var buttonsTextColor = UIColor(red:0.93, green:0.94, blue:0.95, alpha:1)
+    
+    public var buttonsBackgroundColor = UIColor(red:0.21, green:0.5, blue:0.74, alpha:1)
+    
+    public var buttonsFont = UIFont(name: "AvenirNext-Bold", size: 20.0)!
+    
+    public var labelTextColor = UIColor(red:0.93, green:0.94, blue:0.95, alpha:1)
+    
+    public var labelBackgroundColor = UIColor(red:0.26, green:0.6, blue:0.87, alpha:1)
+
+    public var labelFont = UIFont(name: "AvenirNext-Bold", size: 25.0)!
     
     private let leftButton = UIButton()
     private let rightButton = UIButton()
@@ -28,23 +41,29 @@ public class GMStepper: UIView {
     required public init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
-        leftButton.setTitle("-", forState: [.Normal])
-        rightButton.setTitle("+", forState: [.Normal])
-        
+        leftButton.setTitle(leftButtonText, forState: [.Normal])
+        leftButton.setTitleColor(buttonsTextColor, forState: [.Normal])
+        leftButton.backgroundColor = buttonsBackgroundColor
+        leftButton.titleLabel?.font = buttonsFont
         leftButton.addTarget(self, action: "leftButtonTapped:", forControlEvents: .TouchDown)
+        addSubview(leftButton)
+        
+        rightButton.setTitle(rightButtonText, forState: [.Normal])
+        rightButton.setTitleColor(buttonsTextColor, forState: [.Normal])
+        rightButton.backgroundColor = buttonsBackgroundColor
+        rightButton.titleLabel?.font = buttonsFont
         rightButton.addTarget(self, action: "rightButtonTapped:", forControlEvents: .TouchDown)
+        addSubview(rightButton)
         
         label.textAlignment = .Center
         label.text = String(value)
-        
-        addSubview(leftButton)
-        addSubview(rightButton)
+        label.textColor = labelTextColor
+        label.backgroundColor = labelBackgroundColor
+        label.font = labelFont
         addSubview(label)
         
         backgroundColor = UIColor.grayColor()
-        label.backgroundColor = UIColor.redColor()
-        leftButton.backgroundColor = UIColor.purpleColor()
-        rightButton.backgroundColor = UIColor.purpleColor()
+
     }
     
     public override func layoutSubviews() {
@@ -56,11 +75,11 @@ public class GMStepper: UIView {
         rightButton.frame = CGRect(x: labelWidth + buttonWidth, y: 0, width: buttonWidth, height: bounds.size.height)
     }
     
-    private func leftButtonTapped(button: UIButton) {
+    @objc private func leftButtonTapped(button: UIButton) {
         value -= 1
     }
 
-    private func rightButtonTapped(button: UIButton) {
+    @objc private func rightButtonTapped(button: UIButton) {
         value += 1
     }
 }
