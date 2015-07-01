@@ -8,29 +8,28 @@
 
 import UIKit
 
-class GMStepper: UIView {
-    var value = 0 {
+public class GMStepper: UIView {
+    public var value = 0 {
         didSet {
             value = min(maximumValue, max(minimumValue, value))
             label.text = String(value)
         }
     }
     
-    var minimumValue = 0
-    var maximumValue = 10
+    public var minimumValue = 0
     
-    let leftButton = UIButton()
-    let rightButton = UIButton()
-    let label = UILabel()
+    public var maximumValue = 10
     
-    required init(coder aDecoder: NSCoder) {
+    
+    private let leftButton = UIButton()
+    private let rightButton = UIButton()
+    private let label = UILabel()
+    
+    required public init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-
-        let leftButtonImage = UIImage(named: "minus")
-        let rightButtonImage = UIImage(named: "plus")
         
-        rightButton.setImage(rightButtonImage, forState: [.Normal])
-        leftButton.setImage(leftButtonImage, forState: [.Normal])
+        leftButton.setTitle("-", forState: [.Normal])
+        rightButton.setTitle("+", forState: [.Normal])
         
         leftButton.addTarget(self, action: "leftButtonTapped:", forControlEvents: .TouchDown)
         rightButton.addTarget(self, action: "rightButtonTapped:", forControlEvents: .TouchDown)
@@ -41,26 +40,27 @@ class GMStepper: UIView {
         addSubview(leftButton)
         addSubview(rightButton)
         addSubview(label)
-    }
-    
-    override func layoutSubviews() {
-        let buttonSize = Int(frame.size.height)
-        let labelWidth = Int(frame.size.width) - 2 * buttonSize
-
-        let leftButtonFrame = CGRect(x: 0, y: 0, width: buttonSize, height: buttonSize)
-        let labelFrame = CGRect(x: buttonSize, y: 0, width: labelWidth, height: buttonSize)
-        let rightButtonFrame = CGRect(x: buttonSize + labelWidth, y: 0, width: buttonSize, height: buttonSize)
         
-        leftButton.frame = leftButtonFrame
-        label.frame = labelFrame
-        rightButton.frame = rightButtonFrame
+        backgroundColor = UIColor.grayColor()
+        label.backgroundColor = UIColor.redColor()
+        leftButton.backgroundColor = UIColor.purpleColor()
+        rightButton.backgroundColor = UIColor.purpleColor()
     }
     
-    func leftButtonTapped(button: UIButton) {
+    public override func layoutSubviews() {
+        let buttonWidth = bounds.size.width * 0.25
+        let labelWidth = bounds.size.width * 0.5
+        
+        leftButton.frame = CGRect(x: 0, y: 0, width: buttonWidth, height: bounds.size.height)
+        label.frame = CGRect(x: buttonWidth, y: 0, width: labelWidth, height: bounds.size.height)
+        rightButton.frame = CGRect(x: labelWidth + buttonWidth, y: 0, width: buttonWidth, height: bounds.size.height)
+    }
+    
+    private func leftButtonTapped(button: UIButton) {
         value -= 1
     }
 
-    func rightButtonTapped(button: UIButton) {
+    private func rightButtonTapped(button: UIButton) {
         value += 1
     }
 }
