@@ -21,9 +21,17 @@
                                 <rect key="frame" x="20" y="20" width="284" height="44"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="284" id="RLe-7a-S9I"/>
-                                    <constraint firstAttribute="height" constant="44" id="bMh-qb-O1H"/>
+                                    <constraint firstAttribute="width" constant="284" id="CF0-ce-PHQ"/>
+                                    <constraint firstAttribute="height" constant="44" id="mzJ-k6-SLm"/>
                                 </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="minimumValue">
+                                        <integer key="value" value="0"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="maximumValue">
+                                        <integer key="value" value="9"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>

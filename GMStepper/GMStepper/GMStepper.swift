@@ -8,7 +8,7 @@
 
 import UIKit
 
-public class GMStepper: UIControl {
+@IBDesignable public class GMStepper: UIControl {
     public var value = 0 {
         didSet {
             value = min(maximumValue, max(minimumValue, value))
@@ -20,23 +20,71 @@ public class GMStepper: UIControl {
         }
     }
     
-    public var minimumValue = 0
-    public var maximumValue = 10
+    @IBInspectable public var minimumValue: Int = 0 {
+        didSet {
+            value = 0
+        }
+    }
     
-    public var leftButtonText = "-"
-    public var rightButtonText = "+"
+    @IBInspectable public var maximumValue: Int = 10 {
+        didSet {
+            value = 0
+        }
+    }
     
-    public var buttonsTextColor = UIColor.whiteColor()
+    @IBInspectable public var leftButtonText: String = "-" {
+        didSet {
+            leftButton.setTitle(leftButtonText, forState: [.Normal])
+        }
+    }
     
-    public var buttonsBackgroundColor = UIColor(red:0.21, green:0.5, blue:0.74, alpha:1)
+    @IBInspectable public var rightButtonText: String = "+" {
+        didSet {
+            rightButton.setTitle(rightButtonText, forState: [.Normal])
+        }
+    }
     
-    public var buttonsFont = UIFont(name: "AvenirNext-Bold", size: 20.0)!
+    @IBInspectable public var buttonsTextColor: UIColor = UIColor.whiteColor() {
+        didSet {
+            for button in [leftButton, rightButton] {
+                button.setTitleColor(buttonsTextColor, forState: [.Normal])
+            }
+        }
+    }
     
-    public var labelTextColor = UIColor.whiteColor()
+    @IBInspectable public var buttonsBackgroundColor: UIColor = UIColor(red:0.21, green:0.5, blue:0.74, alpha:1) {
+        didSet {
+            for button in [leftButton, rightButton] {
+                button.backgroundColor = buttonsBackgroundColor
+            }
+        }
+    }
     
-    public var labelBackgroundColor = UIColor(red:0.26, green:0.6, blue:0.87, alpha:1)
+    public var buttonsFont = UIFont(name: "AvenirNext-Bold", size: 20.0)! {
+        didSet {
+            for button in [leftButton, rightButton] {
+                button.titleLabel?.font = buttonsFont
+            }
+        }
+    }
+    
+    @IBInspectable public var labelTextColor: UIColor = UIColor.whiteColor() {
+        didSet {
+            label.textColor = labelTextColor
+        }
+    }
+    
+    @IBInspectable public var labelBackgroundColor: UIColor = UIColor(red:0.26, green:0.6, blue:0.87, alpha:1) {
+        didSet {
+            label.backgroundColor = labelBackgroundColor
+        }
+    }
 
-    public var labelFont = UIFont(name: "AvenirNext-Bold", size: 25.0)!
+    public var labelFont = UIFont(name: "AvenirNext-Bold", size: 25.0)! {
+        didSet {
+            label.font = labelFont
+        }
+    }
     
     private let leftButton = UIButton()
     private let rightButton = UIButton()
@@ -44,7 +92,15 @@ public class GMStepper: UIControl {
     
     required public init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        
+        setup()
+    }
+    
+    public override init(frame: CGRect) {
+        super.init(frame: frame)
+        setup()
+    }
+    
+    private func setup() {
         leftButton.setTitle(leftButtonText, forState: [.Normal])
         leftButton.setTitleColor(buttonsTextColor, forState: [.Normal])
         leftButton.backgroundColor = buttonsBackgroundColor
@@ -65,9 +121,6 @@ public class GMStepper: UIControl {
         label.backgroundColor = labelBackgroundColor
         label.font = labelFont
         addSubview(label)
-        
-        backgroundColor = UIColor.grayColor()
-
     }
     
     public override func layoutSubviews() {
