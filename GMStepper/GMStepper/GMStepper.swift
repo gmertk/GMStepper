@@ -26,13 +26,13 @@ public class GMStepper: UIControl {
     public var leftButtonText = "-"
     public var rightButtonText = "+"
     
-    public var buttonsTextColor = UIColor(red:0.93, green:0.94, blue:0.95, alpha:1)
+    public var buttonsTextColor = UIColor.whiteColor()
     
     public var buttonsBackgroundColor = UIColor(red:0.21, green:0.5, blue:0.74, alpha:1)
     
     public var buttonsFont = UIFont(name: "AvenirNext-Bold", size: 20.0)!
     
-    public var labelTextColor = UIColor(red:0.93, green:0.94, blue:0.95, alpha:1)
+    public var labelTextColor = UIColor.whiteColor()
     
     public var labelBackgroundColor = UIColor(red:0.26, green:0.6, blue:0.87, alpha:1)
 
