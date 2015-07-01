@@ -25,8 +25,31 @@ class GMStepper: UIView {
         leftButton.addTarget(self, action: "leftButtonTapped:", forControlEvents: .TouchDown)
         rightButton.addTarget(self, action: "rightButtonTapped:", forControlEvents: .TouchDown)
         
+        label.textAlignment = .Center
+        
         addSubview(leftButton)
         addSubview(rightButton)
         addSubview(label)
+    }
+    
+    override func layoutSubviews() {
+        let buttonSize = Int(frame.size.height)
+        let labelWidth = Int(frame.size.width) - 2 * buttonSize
+
+        let leftButtonFrame = CGRect(x: 0, y: 0, width: buttonSize, height: buttonSize)
+        let labelFrame = CGRect(x: buttonSize, y: 0, width: labelWidth, height: buttonSize)
+        let rightButtonFrame = CGRect(x: buttonSize + labelWidth, y: 0, width: buttonSize, height: buttonSize)
+        
+        leftButton.frame = leftButtonFrame
+        label.frame = labelFrame
+        rightButton.frame = rightButtonFrame
+    }
+    
+    func leftButtonTapped(button: UIButton) {
+        
+    }
+
+    func rightButtonTapped(button: UIButton) {
+        
     }
 }
