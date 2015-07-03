@@ -57,6 +57,7 @@ import UIKit
             for button in [leftButton, rightButton] {
                 button.backgroundColor = buttonsBackgroundColor
             }
+            backgroundColor = buttonsBackgroundColor
         }
     }
     
