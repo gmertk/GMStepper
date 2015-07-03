@@ -93,6 +93,9 @@ import UIKit
         }
     }
     
+    private let labelSlideLength: CGFloat = 5
+    private let labelSlideDuration: NSTimeInterval = 0.1
+    
     private let leftButton = UIButton()
     private let rightButton = UIButton()
     private let label = UILabel()
@@ -129,6 +132,7 @@ import UIKit
         label.font = labelFont
         addSubview(label)
         
+        backgroundColor = buttonsBackgroundColor
         layer.cornerRadius = cornerRadius
         clipsToBounds = true
     }
@@ -144,9 +148,31 @@ import UIKit
     
     @objc private func leftButtonTapped(button: UIButton) {
         value -= 1
+        animateSlideLeft()
     }
 
     @objc private func rightButtonTapped(button: UIButton) {
         value += 1
+        animateSlideRight()
+    }
+    
+    private func animateSlideLeft() {
+        UIView.animateWithDuration(labelSlideDuration, animations: {
+            self.label.center.x -= self.labelSlideLength
+        }, completion : { _ in
+            UIView.animateWithDuration(self.labelSlideDuration, animations: {
+                self.label.center.x += self.labelSlideLength
+            })
+        })
+    }
+    
+    private func animateSlideRight() {
+        UIView.animateWithDuration(labelSlideDuration, animations: {
+            self.label.center.x += self.labelSlideLength
+        }, completion : { _ in
+            UIView.animateWithDuration(self.labelSlideDuration, animations: {
+                self.label.center.x -= self.labelSlideLength
+            })
+        })
     }
 }
