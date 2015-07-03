@@ -94,6 +94,13 @@ import UIKit
         }
     }
     
+    @IBInspectable public var labelWidthWeight: CGFloat = 0.5 {
+        didSet {
+            labelWidthWeight = min(1, max(0, labelWidthWeight))
+            setNeedsLayout()
+        }
+    }
+    
     private let labelSlideLength: CGFloat = 5
     private let labelSlideDuration: NSTimeInterval = 0.1
     
@@ -142,8 +149,8 @@ import UIKit
     }
     
     public override func layoutSubviews() {
-        let buttonWidth = bounds.size.width * 0.25
-        let labelWidth = bounds.size.width * 0.5
+        let buttonWidth = bounds.size.width * ((1 - labelWidthWeight) / 2)
+        let labelWidth = bounds.size.width * labelWidthWeight
         
         leftButton.frame = CGRect(x: 0, y: 0, width: buttonWidth, height: bounds.size.height)
         label.frame = CGRect(x: buttonWidth, y: 0, width: labelWidth, height: bounds.size.height)
