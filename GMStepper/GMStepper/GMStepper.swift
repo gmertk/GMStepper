@@ -96,6 +96,9 @@ import UIKit
     private let labelSlideLength: CGFloat = 5
     private let labelSlideDuration: NSTimeInterval = 0.1
     
+    private let limitHitAnimationDuration: NSTimeInterval = 0.1
+    @IBInspectable public var limitHitAnimationColor: UIColor = UIColor(red:0.23, green:0.3, blue:0.51, alpha:1)
+    
     private let leftButton = UIButton()
     private let rightButton = UIButton()
     private let label = UILabel()
@@ -147,19 +150,27 @@ import UIKit
     }
     
     @objc private func leftButtonTapped(button: UIButton) {
-        value -= 1
-        animateSlideLeft()
+        if value == minimumValue {
+            animateLimitHitForButton(leftButton)
+        } else {
+            value -= 1
+            animateSlideLeft()
+        }
     }
 
     @objc private func rightButtonTapped(button: UIButton) {
-        value += 1
-        animateSlideRight()
+        if value == maximumValue {
+            animateLimitHitForButton(rightButton)
+        } else {
+            value += 1
+            animateSlideRight()
+        }
     }
     
     private func animateSlideLeft() {
         UIView.animateWithDuration(labelSlideDuration, animations: {
             self.label.center.x -= self.labelSlideLength
-        }, completion : { _ in
+        }, completion: { _ in
             UIView.animateWithDuration(self.labelSlideDuration, animations: {
                 self.label.center.x += self.labelSlideLength
             })
@@ -169,10 +180,18 @@ import UIKit
     private func animateSlideRight() {
         UIView.animateWithDuration(labelSlideDuration, animations: {
             self.label.center.x += self.labelSlideLength
-        }, completion : { _ in
+        }, completion: { _ in
             UIView.animateWithDuration(self.labelSlideDuration, animations: {
                 self.label.center.x -= self.labelSlideLength
             })
+        })
+    }
+    
+    private func animateLimitHitForButton(button: UIButton){
+        UIView.animateWithDuration(limitHitAnimationDuration, animations: {
+            button.backgroundColor = self.limitHitAnimationColor
+        }, completion: { _ in
+            button.backgroundColor = self.buttonsBackgroundColor
         })
     }
 }
