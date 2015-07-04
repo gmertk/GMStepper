@@ -5,4 +5,4 @@
 
 A stepper with a sliding label in the middle.
 
-![Screenshot 0](https://raw.githubusercontent.com/gmertk/GMStepper/master/Screenshots/screenshot_0.png)
+![Screenshot_0.gif](https://raw.githubusercontent.com/gmertk/GMStepper/master/Screenshots/screenshot_0.gif)
