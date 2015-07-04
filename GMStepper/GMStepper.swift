@@ -9,6 +9,8 @@
 import UIKit
 
 @IBDesignable public class GMStepper: UIControl {
+    
+    /// Current value of the stepper. Defaults to 0.
     public var value = 0 {
         didSet {
             value = min(maximumValue, max(minimumValue, value))
@@ -20,30 +22,35 @@ import UIKit
         }
     }
     
+    /// Minimum value. Must be less than maximumValue. Defaults to 0.
     @IBInspectable public var minimumValue: Int = 0 {
         didSet {
             value = 0
         }
     }
     
+    /// Maximum value. Must be more than minimumValue. Defaults to 10.
     @IBInspectable public var maximumValue: Int = 10 {
         didSet {
             value = 0
         }
     }
     
+    /// Text on the left button. Be sure that it fits in the button. Defaults to "-".
     @IBInspectable public var leftButtonText: String = "-" {
         didSet {
             leftButton.setTitle(leftButtonText, forState: .Normal)
         }
     }
     
+    /// Text on the right button. Be sure that it fits in the button. Defaults to "+".
     @IBInspectable public var rightButtonText: String = "+" {
         didSet {
             rightButton.setTitle(rightButtonText, forState: .Normal)
         }
     }
     
+    /// Text color of the buttons. Defaults to white.
     @IBInspectable public var buttonsTextColor: UIColor = UIColor.whiteColor() {
         didSet {
             for button in [leftButton, rightButton] {
@@ -52,6 +59,7 @@ import UIKit
         }
     }
     
+    /// Background color of the buttons. Defaults to dark blue.
     @IBInspectable public var buttonsBackgroundColor: UIColor = UIColor(red:0.21, green:0.5, blue:0.74, alpha:1) {
         didSet {
             for button in [leftButton, rightButton] {
@@ -61,6 +69,7 @@ import UIKit
         }
     }
     
+    /// Font of the buttons. Defaults to AvenirNext-Bold, 20.0 points in size.
     public var buttonsFont = UIFont(name: "AvenirNext-Bold", size: 20.0)! {
         didSet {
             for button in [leftButton, rightButton] {
@@ -69,24 +78,28 @@ import UIKit
         }
     }
     
+    /// Text color of the middle label. Defaults to white.
     @IBInspectable public var labelTextColor: UIColor = UIColor.whiteColor() {
         didSet {
             label.textColor = labelTextColor
         }
     }
     
+    /// Text color of the middle label. Defaults to lighter blue.
     @IBInspectable public var labelBackgroundColor: UIColor = UIColor(red:0.26, green:0.6, blue:0.87, alpha:1) {
         didSet {
             label.backgroundColor = labelBackgroundColor
         }
     }
 
+    /// Font of the middle label. Defaults to AvenirNext-Bold, 25.0 points in size.
     public var labelFont = UIFont(name: "AvenirNext-Bold", size: 25.0)! {
         didSet {
             label.font = labelFont
         }
     }
     
+    /// Corner radius of the stepper's layer. Defaults to 4.0.
     @IBInspectable public var cornerRadius: CGFloat = 4.0 {
         didSet {
             layer.cornerRadius = cornerRadius
@@ -94,6 +107,7 @@ import UIKit
         }
     }
     
+    /// Percentage of the middle label's width. Must be between 0 and 1. Defaults to 0.5. Be sure that it is wide enough to show the value.
     @IBInspectable public var labelWidthWeight: CGFloat = 0.5 {
         didSet {
             labelWidthWeight = min(1, max(0, labelWidthWeight))
@@ -101,10 +115,18 @@ import UIKit
         }
     }
     
+    /**
+        Width of the sliding animation. When buttons clicked, the middle label does a slide animation towards to the clicked button. Defaults to 5.
+    */
     private let labelSlideLength: CGFloat = 5
+    
+    /// Duration of the sliding animation
     private let labelSlideDuration: NSTimeInterval = 0.1
     
+    /// Duration of the flashing animation when the value hits the limit.
     private let limitHitAnimationDuration: NSTimeInterval = 0.1
+    
+    /// Color of the flashing animation on the buttons in case the value hit the limit.
     @IBInspectable public var limitHitAnimationColor: UIColor = UIColor(red:0.26, green:0.6, blue:0.87, alpha:1)
     
     private let leftButton = UIButton()
