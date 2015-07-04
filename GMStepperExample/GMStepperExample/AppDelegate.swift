@@ -1,9 +1,9 @@
 //
 //  AppDelegate.swift
-//  GMStepper
+//  GMStepperExample
 //
-//  Created by Gunay Mert Karadogan on 1/7/15.
-//  Copyright © 2015 Gunay Mert Karadogan. All rights reserved.
+//  Created by Gunay Mert Karadogan on 4/7/15.
+//  Copyright (c) 2015 Gunay Mert Karadogan. All rights reserved.
 //
 
 import UIKit

@@ -1,14 +1,15 @@
 //
-//  GMStepperTests.swift
-//  GMStepperTests
+//  GMStepperExampleTests.swift
+//  GMStepperExampleTests
 //
-//  Created by Gunay Mert Karadogan on 1/7/15.
-//  Copyright © 2015 Gunay Mert Karadogan. All rights reserved.
+//  Created by Gunay Mert Karadogan on 4/7/15.
+//  Copyright (c) 2015 Gunay Mert Karadogan. All rights reserved.
 //
 
+import UIKit
 import XCTest
 
-class GMStepperTests: XCTestCase {
+class GMStepperExampleTests: XCTestCase {
     
     override func setUp() {
         super.setUp()
@@ -22,7 +23,7 @@ class GMStepperTests: XCTestCase {
     
     func testExample() {
         // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+        XCTAssert(true, "Pass")
     }
     
     func testPerformanceExample() {

@@ -34,20 +34,20 @@ import UIKit
     
     @IBInspectable public var leftButtonText: String = "-" {
         didSet {
-            leftButton.setTitle(leftButtonText, forState: [.Normal])
+            leftButton.setTitle(leftButtonText, forState: .Normal)
         }
     }
     
     @IBInspectable public var rightButtonText: String = "+" {
         didSet {
-            rightButton.setTitle(rightButtonText, forState: [.Normal])
+            rightButton.setTitle(rightButtonText, forState: .Normal)
         }
     }
     
     @IBInspectable public var buttonsTextColor: UIColor = UIColor.whiteColor() {
         didSet {
             for button in [leftButton, rightButton] {
-                button.setTitleColor(buttonsTextColor, forState: [.Normal])
+                button.setTitleColor(buttonsTextColor, forState: .Normal)
             }
         }
     }
@@ -105,7 +105,7 @@ import UIKit
     private let labelSlideDuration: NSTimeInterval = 0.1
     
     private let limitHitAnimationDuration: NSTimeInterval = 0.1
-    @IBInspectable public var limitHitAnimationColor: UIColor = UIColor(red:0.23, green:0.3, blue:0.51, alpha:1)
+    @IBInspectable public var limitHitAnimationColor: UIColor = UIColor(red:0.26, green:0.6, blue:0.87, alpha:1)
     
     private let leftButton = UIButton()
     private let rightButton = UIButton()
@@ -122,15 +122,15 @@ import UIKit
     }
     
     private func setup() {
-        leftButton.setTitle(leftButtonText, forState: [.Normal])
-        leftButton.setTitleColor(buttonsTextColor, forState: [.Normal])
+        leftButton.setTitle(leftButtonText, forState: .Normal)
+        leftButton.setTitleColor(buttonsTextColor, forState: .Normal)
         leftButton.backgroundColor = buttonsBackgroundColor
         leftButton.titleLabel?.font = buttonsFont
         leftButton.addTarget(self, action: "leftButtonTapped:", forControlEvents: .TouchDown)
         addSubview(leftButton)
         
-        rightButton.setTitle(rightButtonText, forState: [.Normal])
-        rightButton.setTitleColor(buttonsTextColor, forState: [.Normal])
+        rightButton.setTitle(rightButtonText, forState: .Normal)
+        rightButton.setTitleColor(buttonsTextColor, forState: .Normal)
         rightButton.backgroundColor = buttonsBackgroundColor
         rightButton.titleLabel?.font = buttonsFont
         rightButton.addTarget(self, action: "rightButtonTapped:", forControlEvents: .TouchDown)
