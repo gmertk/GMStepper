@@ -15,9 +15,8 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         stepper.addTarget(self, action: "stepperValueChanged:", forControlEvents: .ValueChanged)
     }
-    
+
     func stepperValueChanged(stepper: GMStepper) {
         println(stepper.value)
     }
 }
-
