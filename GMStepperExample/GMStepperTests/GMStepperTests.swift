@@ -1,15 +1,16 @@
 //
-//  GMStepperExampleTests.swift
-//  GMStepperExampleTests
+//  GMStepperTests.swift
+//  GMStepperTests
 //
-//  Created by Gunay Mert Karadogan on 4/7/15.
+//  Created by Gunay Mert Karadogan on 5/7/15.
 //  Copyright (c) 2015 Gunay Mert Karadogan. All rights reserved.
 //
 
 import UIKit
 import XCTest
 
-class GMStepperExampleTests: XCTestCase {
+class GMStepperTests: XCTestCase {
+    
     var stepper: GMStepper!
 
     override func setUp() {
@@ -37,6 +38,6 @@ class GMStepperExampleTests: XCTestCase {
 
         XCTAssert(stepper.value == stepper.maximumValue, "Pass")
     }
-
+    
 
 }
