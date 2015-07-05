@@ -10,27 +10,33 @@ import UIKit
 import XCTest
 
 class GMStepperExampleTests: XCTestCase {
-    
+    var stepper: GMStepper!
+
     override func setUp() {
         super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        stepper = GMStepper()
     }
-    
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-        super.tearDown()
+
+    func testDefaults() {
+        XCTAssert(stepper.minimumValue == 0, "minimumValue defaults 0")
+        XCTAssert(stepper.maximumValue == 10, "maximumValue defaults to 10")
+        XCTAssert(stepper.value == 0, "value defaults to 0")
     }
-    
-    func testExample() {
-        // This is an example of a functional test case.
-        XCTAssert(true, "Pass")
+
+    func testMinimum_limitsValue() {
+        stepper.minimumValue = 1
+        stepper.value = 0
+
+        XCTAssert(stepper.value == stepper.minimumValue, "Pass")
     }
-    
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measureBlock() {
-            // Put the code you want to measure the time of here.
-        }
+
+    func testMaximum_limitsValue() {
+        let stepper = GMStepper()
+        stepper.maximumValue = 1
+        stepper.value = 2
+
+        XCTAssert(stepper.value == stepper.maximumValue, "Pass")
     }
-    
+
+
 }

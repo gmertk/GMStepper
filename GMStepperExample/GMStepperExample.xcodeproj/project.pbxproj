@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3169DD3E1B496C33009791D1 /* GMStepper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 319C195B1B48445E005EFEE5 /* GMStepper.swift */; };
 		319C19381B4843EB005EFEE5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 319C19371B4843EB005EFEE5 /* AppDelegate.swift */; };
 		319C193A1B4843EB005EFEE5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 319C19391B4843EB005EFEE5 /* ViewController.swift */; };
 		319C193D1B4843EB005EFEE5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 319C193B1B4843EB005EFEE5 /* Main.storyboard */; };
@@ -168,6 +169,7 @@
 		319C192A1B4843EB005EFEE5 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 0700;
 				LastUpgradeCheck = 0640;
 				ORGANIZATIONNAME = "Gunay Mert Karadogan";
 				TargetAttributes = {
@@ -235,6 +237,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				319C194E1B4843EB005EFEE5 /* GMStepperExampleTests.swift in Sources */,
+				3169DD3E1B496C33009791D1 /* GMStepper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
