@@ -22,7 +22,7 @@ pod "GMStepper"
 	
 ## Setup
 
-If you want to use the storyboard, just drop a UIView into your storyboard and set its class to `GMStepper`. Then customize through the attributes inspector. Otherwise, you can write the code to initialize with frame and set the properties.
+If you want to use storyboards, just drop a UIView into your storyboard and set its class to `GMStepper`. Then customize through the attributes inspector. Otherwise, you can write the code to initialize with frame and set the properties.
 
 ## Properties
 ```swift
