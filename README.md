@@ -3,7 +3,7 @@
 [![License](https://img.shields.io/cocoapods/l/GMStepper.svg?style=flat)](http://cocoapods.org/pods/GMStepper)
 [![Platform](https://img.shields.io/cocoapods/p/GMStepper.svg?style=flat)](http://cocoapods.org/pods/GMStepper)
 
-A stepper with a sliding label in the middle.
+A stepper with a sliding label in the middle. Pan the label or tap the buttons.
 
 ## Screenshot
 
