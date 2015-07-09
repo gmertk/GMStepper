@@ -133,6 +133,15 @@ import UIKit
     private let rightButton = UIButton()
     private let label = UILabel()
 
+    private var labelOriginalCenter: CGPoint!
+    private var labelMaximumCenterX: CGFloat!
+    private var labelMinimumCenterX: CGFloat!
+
+    private enum LabelPanState {
+        case Stale, HitRightEdge, HitLeftEdge
+    }
+    private var panState = LabelPanState.Stale
+
     required public init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         setup()
@@ -168,6 +177,10 @@ import UIKit
         backgroundColor = buttonsBackgroundColor
         layer.cornerRadius = cornerRadius
         clipsToBounds = true
+
+        let panRecognizer = UIPanGestureRecognizer(target: self, action: "handlePan:")
+        label.userInteractionEnabled = true
+        label.addGestureRecognizer(panRecognizer)
     }
 
     public override func layoutSubviews() {
@@ -177,6 +190,10 @@ import UIKit
         leftButton.frame = CGRect(x: 0, y: 0, width: buttonWidth, height: bounds.size.height)
         label.frame = CGRect(x: buttonWidth, y: 0, width: labelWidth, height: bounds.size.height)
         rightButton.frame = CGRect(x: labelWidth + buttonWidth, y: 0, width: buttonWidth, height: bounds.size.height)
+
+        labelMaximumCenterX = label.center.x + labelSlideLength
+        labelMinimumCenterX = label.center.x - labelSlideLength
+        labelOriginalCenter = label.center
     }
 
     @objc private func leftButtonTapped(button: UIButton) {
@@ -224,4 +241,65 @@ import UIKit
             button.backgroundColor = self.buttonsBackgroundColor
         })
     }
+
+    @objc private func handlePan(gesture: UIPanGestureRecognizer) {
+        switch gesture.state {
+        case .Changed:
+            var translation = gesture.translationInView(label)
+            gesture.setTranslation(CGPointZero, inView: label)
+
+            var slidingRight = gesture.velocityInView(label).x > 0
+            var slidingLeft = gesture.velocityInView(label).x < 0
+
+            // Move the label with pan
+            if slidingRight {
+                label.center.x = min(labelMaximumCenterX, label.center.x + translation.x)
+            } else if slidingLeft {
+                label.center.x = max(labelMinimumCenterX, label.center.x + translation.x)
+            }
+
+            // When the label hits the edges, increase/decrease value and change button backgrounds
+            if label.center.x == labelMaximumCenterX {
+
+                // Increase only once for each pan gesture
+                if panState != .HitRightEdge {
+                    value += 1
+                    panState = .HitRightEdge
+                }
+
+                if value == maximumValue {
+                    rightButton.backgroundColor = self.limitHitAnimationColor
+                }
+            } else if label.center.x == labelMinimumCenterX {
+
+                if panState != .HitLeftEdge {
+                    value -= 1
+                    panState = .HitLeftEdge
+                }
+
+                if value == minimumValue {
+                    leftButton.backgroundColor = self.limitHitAnimationColor
+                }
+            } else {
+                leftButton.backgroundColor = buttonsBackgroundColor
+                rightButton.backgroundColor = buttonsBackgroundColor
+            }
+
+        case .Ended:
+            reset()
+        default:
+            break
+        }
+    }
+
+    private func reset() {
+        panState = .Stale
+
+        UIView.animateWithDuration(self.labelSlideDuration, animations: {
+            self.label.center = self.labelOriginalCenter
+            self.rightButton.backgroundColor = self.buttonsBackgroundColor
+            self.leftButton.backgroundColor = self.buttonsBackgroundColor
+        })
+    }
+
 }
