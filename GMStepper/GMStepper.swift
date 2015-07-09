@@ -36,6 +36,9 @@ import UIKit
         }
     }
 
+    /// The same as UIStepper's autorepeat. If true, holding on the buttons or the pan gesture repeatedly alters value. Defaults to true.
+    @IBInspectable public var autorepeat: Bool = true
+
     /// Text on the left button. Be sure that it fits in the button. Defaults to "-".
     @IBInspectable public var leftButtonText: String = "-" {
         didSet {
@@ -121,10 +124,10 @@ import UIKit
     private let labelSlideLength: CGFloat = 5
 
     /// Duration of the sliding animation
-    private let labelSlideDuration: NSTimeInterval = 0.1
+    private let labelSlideDuration = NSTimeInterval(0.1)
 
     /// Duration of the flashing animation when the value hits the limit.
-    private let limitHitAnimationDuration: NSTimeInterval = 0.1
+    private let limitHitAnimationDuration = NSTimeInterval(0.1)
 
     /// Color of the flashing animation on the buttons in case the value hit the limit.
     @IBInspectable public var limitHitAnimationColor: UIColor = UIColor(red:0.26, green:0.6, blue:0.87, alpha:1)
@@ -142,6 +145,40 @@ import UIKit
     }
     private var panState = LabelPanState.Stale
 
+    private var timer: NSTimer?
+
+    /** When UIStepper reaches its top speed, it alters the value with a time interval of ~0.05 sec.
+        The user pressing and holding on the stepper repeatedly:
+        - First 2.5 sec, the stepper changes the value every 0.5 sec.
+        - For the next 1.5 sec, it changes the value every 0.1 sec.
+        - Then, every 0.05 sec.
+    */
+    private let timerInterval = NSTimeInterval(0.05)
+
+    /// Check the handleTimerFire: function. While it is counting the number of fires, it decreases the mod value so that the value is altered more frequently.
+    private var timerFireCount = 0
+    private var timerFireCountModulo: Int {
+        if timerFireCount > 80 {
+            return 1 // 0.05 sec * 1 = 0.05 sec
+        } else if timerFireCount > 50 {
+            return 2 // 0.05 sec * 2 = 0.1 sec
+        } else {
+            return 10 // 0.05 sec * 10 = 0.5 sec
+        }
+    }
+
+    lazy var printTimerGaps: () -> () = {
+        var prevTime: CFAbsoluteTime?
+
+        return { _ in
+            var now = CFAbsoluteTimeGetCurrent()
+            if let prevTime = prevTime {
+                println(now - prevTime)
+            }
+            prevTime = now
+        }
+    }()
+
     required public init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         setup()
@@ -157,7 +194,9 @@ import UIKit
         leftButton.setTitleColor(buttonsTextColor, forState: .Normal)
         leftButton.backgroundColor = buttonsBackgroundColor
         leftButton.titleLabel?.font = buttonsFont
-        leftButton.addTarget(self, action: "leftButtonTapped:", forControlEvents: .TouchDown)
+        leftButton.addTarget(self, action: "leftButtonTouchDown:", forControlEvents: .TouchDown)
+        leftButton.addTarget(self, action: "leftButtonTouchUp:", forControlEvents: UIControlEvents.TouchUpInside)
+        leftButton.addTarget(self, action: "leftButtonTouchUp:", forControlEvents: UIControlEvents.TouchUpOutside)
         addSubview(leftButton)
 
         rightButton.setTitle(rightButtonText, forState: .Normal)
@@ -165,6 +204,8 @@ import UIKit
         rightButton.backgroundColor = buttonsBackgroundColor
         rightButton.titleLabel?.font = buttonsFont
         rightButton.addTarget(self, action: "rightButtonTapped:", forControlEvents: .TouchDown)
+        rightButton.addTarget(self, action: "rightButtonTouchUp:", forControlEvents: UIControlEvents.TouchUpInside)
+        rightButton.addTarget(self, action: "rightButtonTouchUp:", forControlEvents: UIControlEvents.TouchUpOutside)
         addSubview(rightButton)
 
         label.textAlignment = .Center
@@ -196,51 +237,7 @@ import UIKit
         labelOriginalCenter = label.center
     }
 
-    @objc private func leftButtonTapped(button: UIButton) {
-        if value == minimumValue {
-            animateLimitHitForButton(leftButton)
-        } else {
-            value -= 1
-            animateSlideLeft()
-        }
-    }
 
-    @objc private func rightButtonTapped(button: UIButton) {
-        if value == maximumValue {
-            animateLimitHitForButton(rightButton)
-        } else {
-            value += 1
-            animateSlideRight()
-        }
-    }
-
-    private func animateSlideLeft() {
-        UIView.animateWithDuration(labelSlideDuration, animations: {
-            self.label.center.x -= self.labelSlideLength
-        }, completion: { _ in
-            UIView.animateWithDuration(self.labelSlideDuration, animations: {
-                self.label.center.x += self.labelSlideLength
-            })
-        })
-    }
-
-    private func animateSlideRight() {
-        UIView.animateWithDuration(labelSlideDuration, animations: {
-            self.label.center.x += self.labelSlideLength
-        }, completion: { _ in
-            UIView.animateWithDuration(self.labelSlideDuration, animations: {
-                self.label.center.x -= self.labelSlideLength
-            })
-        })
-    }
-
-    private func animateLimitHitForButton(button: UIButton){
-        UIView.animateWithDuration(limitHitAnimationDuration, animations: {
-            button.backgroundColor = self.limitHitAnimationColor
-        }, completion: { _ in
-            button.backgroundColor = self.buttonsBackgroundColor
-        })
-    }
 
     @objc private func handlePan(gesture: UIPanGestureRecognizer) {
         switch gesture.state {
@@ -268,7 +265,7 @@ import UIKit
                 }
 
                 if value == maximumValue {
-                    rightButton.backgroundColor = self.limitHitAnimationColor
+                    animateLimitHitForButton(rightButton)
                 }
             } else if label.center.x == labelMinimumCenterX {
 
@@ -278,7 +275,7 @@ import UIKit
                 }
 
                 if value == minimumValue {
-                    leftButton.backgroundColor = self.limitHitAnimationColor
+                    animateLimitHitForButton(leftButton)
                 }
             } else {
                 leftButton.backgroundColor = buttonsBackgroundColor
@@ -301,5 +298,103 @@ import UIKit
             self.leftButton.backgroundColor = self.buttonsBackgroundColor
         })
     }
+}
+
+// MARK: Button Events
+extension GMStepper {
+    @objc private func leftButtonTouchDown(button: UIButton) {
+        if value == minimumValue {
+            animateLimitHitForButton(leftButton)
+        } else {
+            value -= 1
+            if autorepeat {
+                scheduleTimerWithUserInfo(leftButton)
+            }
+            animateSlideLeft()
+        }
+    }
+
+    @objc private func leftButtonTouchUp(button: UIButton) {
+        reset()
+        stopTimer()
+    }
+
+    @objc private func rightButtonTapped(button: UIButton) {
+        if value == maximumValue {
+            animateLimitHitForButton(rightButton)
+        } else {
+            value += 1
+            if autorepeat {
+                scheduleTimerWithUserInfo(rightButton)
+            }
+            animateSlideRight()
+        }
+    }
+
+    @objc private func rightButtonTouchUp(button: UIButton) {
+        reset()
+        stopTimer()
+    }
+}
+
+// MARK: Animations
+extension GMStepper {
+
+    private func animateSlideLeft() {
+        UIView.animateWithDuration(labelSlideDuration) {
+            self.label.center.x -= self.labelSlideLength
+        }
+    }
+
+    private func animateSlideRight() {
+        UIView.animateWithDuration(labelSlideDuration) {
+            self.label.center.x += self.labelSlideLength
+        }
+    }
+
+    private func animateToOriginalPosition() {
+        if self.label.center != self.labelOriginalCenter {
+            UIView.animateWithDuration(labelSlideDuration) {
+                self.label.center = self.labelOriginalCenter
+            }
+        }
+    }
+
+    private func animateLimitHitForButton(button: UIButton){
+        UIView.animateWithDuration(limitHitAnimationDuration) {
+            button.backgroundColor = self.limitHitAnimationColor
+        }
+    }
+
+}
+
+extension GMStepper {
+    func handleTimerFire(timer: NSTimer) {
+        timerFireCount += 1
+        if timerFireCount % timerFireCountModulo == 0 {
+
+            if let button = timer.userInfo as? UIButton {
+                if button == leftButton {
+                    value -= 1
+                } else {
+                    value += 1
+                }
+            }
+//            printTimerGaps()
+        }
+    }
+
+    func scheduleTimerWithUserInfo(userInfo: AnyObject?) {
+        timer = NSTimer.scheduledTimerWithTimeInterval(timerInterval, target: self, selector: "handleTimerFire:", userInfo: userInfo, repeats: true)
+    }
+
+    func stopTimer() {
+        if let timer = timer {
+            timer.invalidate()
+            self.timer = nil
+            timerFireCount = 0
+        }
+    }
+
 
 }
