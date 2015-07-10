@@ -261,6 +261,7 @@ import UIKit
                 // Increase only once for each pan gesture
                 if panState != .HitRightEdge {
                     value += 1
+                    scheduleTimerWithUserInfo(rightButton)
                     panState = .HitRightEdge
                 }
 
@@ -271,6 +272,7 @@ import UIKit
 
                 if panState != .HitLeftEdge {
                     value -= 1
+                    scheduleTimerWithUserInfo(leftButton)
                     panState = .HitLeftEdge
                 }
 
@@ -278,8 +280,7 @@ import UIKit
                     animateLimitHitForButton(leftButton)
                 }
             } else {
-                leftButton.backgroundColor = buttonsBackgroundColor
-                rightButton.backgroundColor = buttonsBackgroundColor
+                reset()
             }
 
         case .Ended:
@@ -291,6 +292,7 @@ import UIKit
 
     private func reset() {
         panState = .Stale
+        resetTimer()
 
         UIView.animateWithDuration(self.labelSlideDuration, animations: {
             self.label.center = self.labelOriginalCenter
@@ -368,6 +370,7 @@ extension GMStepper {
 
 }
 
+// MARK: Timer
 extension GMStepper {
     func handleTimerFire(timer: NSTimer) {
         timerFireCount += 1
@@ -380,7 +383,6 @@ extension GMStepper {
                     value += 1
                 }
             }
-//            printTimerGaps()
         }
     }
 
@@ -388,7 +390,7 @@ extension GMStepper {
         timer = NSTimer.scheduledTimerWithTimeInterval(timerInterval, target: self, selector: "handleTimerFire:", userInfo: userInfo, repeats: true)
     }
 
-    func stopTimer() {
+    func resetTimer() {
         if let timer = timer {
             timer.invalidate()
             self.timer = nil
