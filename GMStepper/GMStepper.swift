@@ -11,10 +11,17 @@ import UIKit
 @IBDesignable public class GMStepper: UIControl {
 
     /// Current value of the stepper. Defaults to 0.
-    @IBInspectable public var value = 0 {
+    @IBInspectable public var value: Double = 0 {
         didSet {
             value = min(maximumValue, max(minimumValue, value))
-            label.text = String(value)
+
+            let isInteger = floor(value) == value
+
+            if showIntegerIfDoubleIsInteger && isInteger {
+                label.text = String(stringInterpolationSegment: Int(value))
+            } else {
+                label.text = String(stringInterpolationSegment: value)
+            }
 
             if oldValue != value {
                 sendActionsForControlEvents(.ValueChanged)
@@ -23,21 +30,26 @@ import UIKit
     }
 
     /// Minimum value. Must be less than maximumValue. Defaults to 0.
-    @IBInspectable public var minimumValue: Int = 0 {
+    @IBInspectable public var minimumValue: Double = 0 {
         didSet {
             value = min(maximumValue, max(minimumValue, value))
         }
     }
 
-    /// Maximum value. Must be more than minimumValue. Defaults to 10.
-    @IBInspectable public var maximumValue: Int = 10 {
+    /// Maximum value. Must be more than minimumValue. Defaults to 100.
+    @IBInspectable public var maximumValue: Double = 100 {
         didSet {
             value = min(maximumValue, max(minimumValue, value))
         }
     }
+
+    /// Step/Increment value as in UIStepper. Defaults to 1.
+    @IBInspectable public var stepValue: Double = 1
 
     /// The same as UIStepper's autorepeat. If true, holding on the buttons or keeping the pan gesture alters the value repeatedly. Defaults to true.
     @IBInspectable public var autorepeat: Bool = true
+
+    @IBInspectable public var showIntegerIfDoubleIsInteger: Bool = true
 
     /// Text on the left button. Be sure that it fits in the button. Defaults to "-".
     @IBInspectable public var leftButtonText: String = "-" {
@@ -159,7 +171,11 @@ import UIKit
     lazy var label: UILabel = {
         let label = UILabel()
         label.textAlignment = .Center
-        label.text = String(self.value)
+        if self.showIntegerIfDoubleIsInteger && floor(self.value) == self.value {
+            label.text = String(stringInterpolationSegment: Int(self.value))
+        } else {
+            label.text = String(stringInterpolationSegment: self.value)
+        }
         label.textColor = self.labelTextColor
         label.backgroundColor = self.labelBackgroundColor
         label.font = self.labelFont
@@ -264,9 +280,9 @@ import UIKit
 
     func updateValue() {
         if stepperState == .ShouldIncrease {
-            value += 1
+            value += stepValue
         } else if stepperState == .ShouldDecrease {
-            value -= 1
+            value -= stepValue
         }   
     }
 }
