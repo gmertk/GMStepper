@@ -49,6 +49,7 @@ import UIKit
     /// The same as UIStepper's autorepeat. If true, holding on the buttons or keeping the pan gesture alters the value repeatedly. Defaults to true.
     @IBInspectable public var autorepeat: Bool = true
 
+    /// If the value is integer, it is shown without floating point.
     @IBInspectable public var showIntegerIfDoubleIsInteger: Bool = true
 
     /// Text on the left button. Be sure that it fits in the button. Defaults to "-".

@@ -27,14 +27,23 @@ If you want to use storyboards, just drop a UIView into your storyboard and set 
 ## Properties
 ```swift
 /// Current value of the stepper. Defaults to 0.
-var value: Int = 0
+var value: Double = 0 
 
 /// Minimum value. Must be less than maximumValue. Defaults to 0.
-var minimumValue: Int = 0
+var minimumValue: Double = 0
 
-/// Maximum value. Must be more than minimumValue. Defaults to 10.
-var maximumValue: Int = 10
+/// Maximum value. Must be more than minimumValue. Defaults to 100.
+var maximumValue: Double = 100
 
+/// Step/Increment value as in UIStepper. Defaults to 1.
+var stepValue: Double = 1
+
+/// The same as UIStepper's autorepeat. If true, holding on the buttons or keeping the pan gesture alters the value repeatedly. Defaults to true.
+var autorepeat: Bool = true
+
+/// If the value is integer, it is shown without floating point.
+var showIntegerIfDoubleIsInteger: Bool = true
+    
 /// Text on the left button. Be sure that it fits in the button. Defaults to "-".
 var leftButtonText: String = "-"
 
