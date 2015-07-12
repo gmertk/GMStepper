@@ -7,7 +7,7 @@ A stepper with a sliding label in the middle. Pan the label or tap the buttons.
 
 ## Screenshot
 
-![Screenshot_0.gif](https://raw.githubusercontent.com/gmertk/GMStepper/master/Screenshots/screenshot_0.gif)
+![Screenshot_1.gif](https://raw.githubusercontent.com/gmertk/GMStepper/master/Screenshots/screenshot_1.gif)
 
 
 ## Usage
