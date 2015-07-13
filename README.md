@@ -3,7 +3,7 @@
 [![License](https://img.shields.io/cocoapods/l/GMStepper.svg?style=flat)](http://cocoapods.org/pods/GMStepper)
 [![Platform](https://img.shields.io/cocoapods/p/GMStepper.svg?style=flat)](http://cocoapods.org/pods/GMStepper)
 
-A stepper with a sliding label in the middle. Pan the label or tap the buttons.
+A stepper with a sliding label in the middle. Pan the label or tap the buttons. Check out the tutorial, [How to Build a Custom Stepper - Part 1](http://gmertk.github.io/custom-stepper-part-1/).
 
 ## Screenshot
 
