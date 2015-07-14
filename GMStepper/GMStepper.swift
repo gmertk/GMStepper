@@ -264,6 +264,8 @@ import UIKit
         backgroundColor = buttonsBackgroundColor
         layer.cornerRadius = cornerRadius
         clipsToBounds = true
+
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "reset", name: UIApplicationWillResignActiveNotification, object: nil)
     }
 
     public override func layoutSubviews() {
@@ -286,15 +288,20 @@ import UIKit
             value -= stepValue
         }   
     }
+
+    deinit {
+        resetTimer()
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
 }
 
 // MARK: Pan Gesture
 extension GMStepper {
     func handlePan(gesture: UIPanGestureRecognizer) {
-        leftButton.enabled = false
-        rightButton.enabled = false
-
         switch gesture.state {
+        case .Began:
+            leftButton.enabled = false
+            rightButton.enabled = false
         case .Changed:
             var translation = gesture.translationInView(label)
             gesture.setTranslation(CGPointZero, inView: label)
@@ -333,8 +340,7 @@ extension GMStepper {
                 self.rightButton.backgroundColor = self.buttonsBackgroundColor
                 self.leftButton.backgroundColor = self.buttonsBackgroundColor
             }
-
-        case .Ended:
+        case .Ended, .Cancelled, .Failed:
             reset()
         default:
             break
@@ -345,8 +351,10 @@ extension GMStepper {
         panState = .Stable
         stepperState = .Stable
         resetTimer()
+
         leftButton.enabled = true
         rightButton.enabled = true
+        label.userInteractionEnabled = true
 
         UIView.animateWithDuration(self.labelSlideDuration, animations: {
             self.label.center = self.labelOriginalCenter
@@ -387,7 +395,6 @@ extension GMStepper {
 
     func buttonTouchUp(button: UIButton) {
         reset()
-        label.userInteractionEnabled = true
     }
 }
 
