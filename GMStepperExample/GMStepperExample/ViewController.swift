@@ -17,6 +17,6 @@ class ViewController: UIViewController {
     }
 
     func stepperValueChanged(stepper: GMStepper) {
-        println(stepper.value)
+        print(stepper.value)
     }
 }
