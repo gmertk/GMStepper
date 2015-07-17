@@ -233,7 +233,7 @@ import UIKit
         }
     }
 
-    /// Useful for logging the timer interval. You can call this in the timer handler to test the autorepeat option.
+    /// Useful for logging the timer interval. You can call this in the timer handler to test the autorepeat option. Not used in the current implementation.
     lazy var printTimerGaps: () -> () = {
         var prevTime: CFAbsoluteTime?
 
@@ -303,11 +303,11 @@ extension GMStepper {
             leftButton.enabled = false
             rightButton.enabled = false
         case .Changed:
-            var translation = gesture.translationInView(label)
+            let translation = gesture.translationInView(label)
             gesture.setTranslation(CGPointZero, inView: label)
 
-            var slidingRight = gesture.velocityInView(label).x > 0
-            var slidingLeft = gesture.velocityInView(label).x < 0
+            let slidingRight = gesture.velocityInView(label).x > 0
+            let slidingLeft = gesture.velocityInView(label).x < 0
 
             // Move the label with pan
             if slidingRight {

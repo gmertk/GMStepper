@@ -19,7 +19,7 @@ class GMStepperExampleTests: XCTestCase {
 
     func testDefaults() {
         XCTAssert(stepper.minimumValue == 0, "minimumValue defaults 0")
-        XCTAssert(stepper.maximumValue == 10, "maximumValue defaults to 10")
+        XCTAssert(stepper.maximumValue == 100, "maximumValue defaults to 100")
         XCTAssert(stepper.value == 0, "value defaults to 0")
     }
 
