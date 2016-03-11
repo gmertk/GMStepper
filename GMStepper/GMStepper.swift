@@ -52,8 +52,8 @@ import UIKit
     /// If the value is integer, it is shown without floating point.
     @IBInspectable public var showIntegerIfDoubleIsInteger: Bool = true
 
-    /// Text on the left button. Be sure that it fits in the button. Defaults to "-".
-    @IBInspectable public var leftButtonText: String = "-" {
+    /// Text on the left button. Be sure that it fits in the button. Defaults to "−".
+    @IBInspectable public var leftButtonText: String = "−" {
         didSet {
             leftButton.setTitle(leftButtonText, forState: .Normal)
         }
