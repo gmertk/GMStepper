@@ -167,9 +167,9 @@ import UIKit
         button.setTitleColor(self.buttonsTextColor, forState: .Normal)
         button.backgroundColor = self.buttonsBackgroundColor
         button.titleLabel?.font = self.buttonsFont
-        button.addTarget(self, action: "leftButtonTouchDown:", forControlEvents: .TouchDown)
-        button.addTarget(self, action: "buttonTouchUp:", forControlEvents: UIControlEvents.TouchUpInside)
-        button.addTarget(self, action: "buttonTouchUp:", forControlEvents: UIControlEvents.TouchUpOutside)
+        button.addTarget(self, action: #selector(GMStepper.leftButtonTouchDown), forControlEvents: .TouchDown)
+        button.addTarget(self, action: #selector(GMStepper.buttonTouchUp), forControlEvents: .TouchUpInside)
+        button.addTarget(self, action: #selector(GMStepper.buttonTouchUp), forControlEvents: .TouchUpOutside)
         return button
     }()
 
@@ -179,9 +179,9 @@ import UIKit
         button.setTitleColor(self.buttonsTextColor, forState: .Normal)
         button.backgroundColor = self.buttonsBackgroundColor
         button.titleLabel?.font = self.buttonsFont
-        button.addTarget(self, action: "rightButtonTouchDown:", forControlEvents: .TouchDown)
-        button.addTarget(self, action: "buttonTouchUp:", forControlEvents: UIControlEvents.TouchUpInside)
-        button.addTarget(self, action: "buttonTouchUp:", forControlEvents: UIControlEvents.TouchUpOutside)
+        button.addTarget(self, action: #selector(GMStepper.rightButtonTouchDown), forControlEvents: .TouchDown)
+        button.addTarget(self, action: #selector(GMStepper.buttonTouchUp), forControlEvents: .TouchUpInside)
+        button.addTarget(self, action: #selector(GMStepper.buttonTouchUp), forControlEvents: .TouchUpOutside)
         return button
     }()
 
@@ -197,7 +197,7 @@ import UIKit
         label.backgroundColor = self.labelBackgroundColor
         label.font = self.labelFont
         label.userInteractionEnabled = true
-        let panRecognizer = UIPanGestureRecognizer(target: self, action: "handlePan:")
+        let panRecognizer = UIPanGestureRecognizer(target: self, action: #selector(GMStepper.handlePan))
         panRecognizer.maximumNumberOfTouches = 1
         label.addGestureRecognizer(panRecognizer)
         return label
@@ -268,7 +268,7 @@ import UIKit
         layer.cornerRadius = cornerRadius
         clipsToBounds = true
 
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "reset", name: UIApplicationWillResignActiveNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(GMStepper.reset), name: UIApplicationWillResignActiveNotification, object: nil)
     }
 
     public override func layoutSubviews() {
@@ -463,7 +463,7 @@ extension GMStepper {
     }
 
     func scheduleTimer() {
-        timer = NSTimer.scheduledTimerWithTimeInterval(timerInterval, target: self, selector: "handleTimerFire:", userInfo: nil, repeats: true)
+        timer = NSTimer.scheduledTimerWithTimeInterval(timerInterval, target: self, selector: #selector(GMStepper.handleTimerFire), userInfo: nil, repeats: true)
     }
 
     func resetTimer() {
