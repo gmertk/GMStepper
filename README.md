@@ -19,7 +19,7 @@ it, simply add the following lines to your Podfile:
 use_frameworks!
 pod "GMStepper"
 ```
-	
+
 ## Setup
 
 If you want to use storyboards, just drop a UIView into your storyboard and set its class to `GMStepper`. Then customize through the attributes inspector. Otherwise, you can write the code to initialize with frame and set the properties.
@@ -27,7 +27,7 @@ If you want to use storyboards, just drop a UIView into your storyboard and set 
 ## Properties
 ```swift
 /// Current value of the stepper. Defaults to 0.
-var value: Double = 0 
+var value: Double = 0
 
 /// Minimum value. Must be less than maximumValue. Defaults to 0.
 var minimumValue: Double = 0
@@ -43,7 +43,7 @@ var autorepeat: Bool = true
 
 /// If the value is integer, it is shown without floating point.
 var showIntegerIfDoubleIsInteger: Bool = true
-    
+
 /// Text on the left button. Be sure that it fits in the button. Defaults to "-".
 var leftButtonText: String = "-"
 
@@ -71,8 +71,14 @@ var labelFont = UIFont(name: "AvenirNext-Bold", size: 25.0)
 /// Corner radius of the stepper's layer. Defaults to 4.0.
 var cornerRadius: CGFloat = 4.0
 
+/// Border width of the stepper and middle label's layer. Defaults to 0.0.
+var borderWidth: CGFloat = 0.0
+
+/// Color of the border of the stepper and middle label's layer. Defaults to clear color.
+var borderColor: UIColor = UIColor.clearColor()
+
 /// Percentage of the middle label's width. Must be between 0 and 1. Defaults to 0.5. Be sure that it is wide enough to show the value.
-var labelWidthWeight: CGFloat = 0.5 
+var labelWidthWeight: CGFloat = 0.5
 
 /// Color of the flashing animation on the buttons in case the value hit the limit.
 var limitHitAnimationColor: UIColor = UIColor(red:0.26, green:0.6, blue:0.87, alpha:1)
