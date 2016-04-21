@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="15A279b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -19,8 +19,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AU6-4C-B2F" customClass="GMStepper" customModule="GMStepperExample" customModuleProvider="target">
-                                <rect key="frame" x="24" y="28" width="552" height="44"/>
-                                <animations/>
+                                <rect key="frame" x="28" y="28" width="544" height="44"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="6mC-hP-wFD"/>
@@ -36,7 +35,6 @@
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="if7-U5-bAM" customClass="GMStepper" customModule="GMStepperExample" customModuleProvider="target">
                                 <rect key="frame" x="140" y="116" width="320" height="66"/>
-                                <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="66" id="iQi-6P-vt9"/>
@@ -65,7 +63,6 @@
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="R9n-I0-fq7" customClass="GMStepper" customModule="GMStepperExample" customModuleProvider="target">
                                 <rect key="frame" x="200" y="226" width="200" height="66"/>
-                                <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="200" id="dVu-w0-mf0"/>
@@ -90,8 +87,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="U8X-8Z-7Mo" customClass="GMStepper" customModule="GMStepperExample" customModuleProvider="target">
-                                <rect key="frame" x="24" y="336" width="552" height="44"/>
-                                <animations/>
+                                <rect key="frame" x="28" y="336" width="544" height="44"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="aF3-T7-dIP"/>
@@ -131,8 +127,44 @@
                                     </mask>
                                 </variation>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9Ri-Yr-sRs" customClass="GMStepper" customModule="GMStepperExample" customModuleProvider="target">
+                                <rect key="frame" x="210" y="424" width="180" height="50"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="180" id="dhO-Nd-SFk"/>
+                                    <constraint firstAttribute="height" constant="50" id="xPS-vU-cZc"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="maximumValue">
+                                        <real key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="stepValue">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="2"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="4"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="buttonsBackgroundColor">
+                                        <color key="value" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="buttonsTextColor">
+                                        <color key="value" red="1" green="0.47058823529999999" blue="0.15686274510000001" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" red="1" green="0.47058823529999999" blue="0.15686274510000001" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="labelBackgroundColor">
+                                        <color key="value" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="labelTextColor">
+                                        <color key="value" red="1" green="0.47058823529999999" blue="0.15686274510000001" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
                         </subviews>
-                        <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="R9n-I0-fq7" firstAttribute="centerX" secondItem="U8X-8Z-7Mo" secondAttribute="centerX" id="3cD-WW-Qg4"/>
@@ -143,7 +175,9 @@
                             <constraint firstItem="if7-U5-bAM" firstAttribute="centerX" secondItem="R9n-I0-fq7" secondAttribute="centerX" id="K7g-rC-ehJ"/>
                             <constraint firstItem="U8X-8Z-7Mo" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="8" id="S1b-pD-UXA"/>
                             <constraint firstItem="U8X-8Z-7Mo" firstAttribute="top" secondItem="R9n-I0-fq7" secondAttribute="bottom" constant="44" id="fBW-Xx-pa0"/>
+                            <constraint firstItem="9Ri-Yr-sRs" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="fay-qT-jKR"/>
                             <constraint firstItem="AU6-4C-B2F" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="8" id="iIM-b2-jzV"/>
+                            <constraint firstItem="9Ri-Yr-sRs" firstAttribute="top" secondItem="U8X-8Z-7Mo" secondAttribute="bottom" constant="44" id="nKi-Fp-8B7"/>
                             <constraint firstAttribute="trailingMargin" secondItem="U8X-8Z-7Mo" secondAttribute="trailing" constant="8" id="ppd-nb-fL8"/>
                             <constraint firstItem="AU6-4C-B2F" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="8" symbolic="YES" id="zDK-gF-kms"/>
                         </constraints>
@@ -154,6 +188,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="274" y="363"/>
         </scene>
     </scenes>
 </document>

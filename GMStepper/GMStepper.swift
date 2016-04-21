@@ -122,6 +122,22 @@ import UIKit
             clipsToBounds = true
         }
     }
+    
+    /// Border width of the stepper and middle label's layer. Defaults to 0.0.
+    @IBInspectable public var borderWidth: CGFloat = 0.0 {
+        didSet {
+            layer.borderWidth = borderWidth
+            label.layer.borderWidth = borderWidth
+        }
+    }
+    
+    /// Color of the border of the stepper and middle label's layer. Defaults to clear color.
+    @IBInspectable public var borderColor: UIColor = UIColor.clearColor() {
+        didSet {
+            layer.borderColor = borderColor.CGColor
+            label.layer.borderColor = borderColor.CGColor
+        }
+    }
 
     /// Percentage of the middle label's width. Must be between 0 and 1. Defaults to 0.5. Be sure that it is wide enough to show the value.
     @IBInspectable public var labelWidthWeight: CGFloat = 0.5 {
