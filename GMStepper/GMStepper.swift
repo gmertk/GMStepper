@@ -16,8 +16,15 @@ import UIKit
             value = min(maximumValue, max(minimumValue, value))
 
             let isInteger = floor(value) == value
-
-            if showIntegerIfDoubleIsInteger && isInteger {
+            
+            //
+            // If we have items, we will display them as steps
+            //
+            
+            if isInteger && stepValue == 1.0 && items.count > 0 {
+                label.text = items[Int(value)]
+            }
+            else if showIntegerIfDoubleIsInteger && isInteger {
                 label.text = String(stringInterpolationSegment: Int(value))
             } else {
                 label.text = String(stringInterpolationSegment: value)
@@ -221,6 +228,30 @@ import UIKit
                 updateValue()
                 if autorepeat {
                     scheduleTimer()
+                }
+            }
+        }
+    }
+    
+    
+    public var items : [String] = [] {
+        didSet {
+            let isInteger = floor(value) == value
+            
+            //
+            // If we have items, we will display them as steps
+            //
+            
+            if isInteger && stepValue == 1.0 && items.count > 0 {
+                
+                var value = Int(self.value)
+                
+                if value >= items.count {
+                    value = items.count - 1
+                    self.value = Double(value)
+                }
+                else {
+                    label.text = items[value]
                 }
             }
         }
