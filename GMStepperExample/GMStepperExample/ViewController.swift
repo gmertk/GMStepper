@@ -13,7 +13,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var stepper: GMStepper!
     override func viewDidLoad() {
         super.viewDidLoad()
-        stepper.addTarget(self, action: #selector(ViewController.stepperValueChanged), forControlEvents: .ValueChanged)
+        stepper.addTarget(self, action: #selector(ViewController.stepperValueChanged), for: .valueChanged)
     }
 
     func stepperValueChanged(stepper: GMStepper) {
