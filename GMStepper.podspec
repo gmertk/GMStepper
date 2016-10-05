@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = "GMStepper"
-  s.version          = "1.2.0"
+  s.version          = "2.0.0"
   s.summary          = "A stepper with a sliding label in the middle."
   s.homepage         = "https://github.com/gmertk/GMStepper"
   s.screenshots      = "https://dl.dropboxusercontent.com/u/4397140/pod-screenshots/screenshot_1.png"

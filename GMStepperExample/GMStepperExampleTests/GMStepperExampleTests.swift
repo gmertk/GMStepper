@@ -6,8 +6,8 @@
 //  Copyright (c) 2015 Gunay Mert Karadogan. All rights reserved.
 //
 
-import UIKit
 import XCTest
+import UIKit
 
 class GMStepperExampleTests: XCTestCase {
     var stepper: GMStepper!
@@ -37,6 +37,6 @@ class GMStepperExampleTests: XCTestCase {
 
         XCTAssert(stepper.value == stepper.maximumValue, "Pass")
     }
-
-
+    
+    
 }

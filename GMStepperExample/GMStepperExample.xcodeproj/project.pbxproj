@@ -7,18 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3169DD3E1B496C33009791D1 /* GMStepper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 319C195B1B48445E005EFEE5 /* GMStepper.swift */; };
+		3116C0DB1DA4DD360015AC69 /* GMStepperExampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3116C0DA1DA4DD360015AC69 /* GMStepperExampleTests.swift */; };
+		3198AC771DA4DEE500311FB3 /* GMStepper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 319C195B1B48445E005EFEE5 /* GMStepper.swift */; };
 		319C19381B4843EB005EFEE5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 319C19371B4843EB005EFEE5 /* AppDelegate.swift */; };
 		319C193A1B4843EB005EFEE5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 319C19391B4843EB005EFEE5 /* ViewController.swift */; };
 		319C193D1B4843EB005EFEE5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 319C193B1B4843EB005EFEE5 /* Main.storyboard */; };
 		319C193F1B4843EB005EFEE5 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 319C193E1B4843EB005EFEE5 /* Images.xcassets */; };
 		319C19421B4843EB005EFEE5 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 319C19401B4843EB005EFEE5 /* LaunchScreen.xib */; };
-		319C194E1B4843EB005EFEE5 /* GMStepperExampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 319C194D1B4843EB005EFEE5 /* GMStepperExampleTests.swift */; };
 		319C195C1B48445E005EFEE5 /* GMStepper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 319C195B1B48445E005EFEE5 /* GMStepper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		319C19481B4843EB005EFEE5 /* PBXContainerItemProxy */ = {
+		3116C0DD1DA4DD360015AC69 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 319C192A1B4843EB005EFEE5 /* Project object */;
 			proxyType = 1;
@@ -28,6 +28,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3116C0D81DA4DD360015AC69 /* GMStepperExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GMStepperExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		3116C0DA1DA4DD360015AC69 /* GMStepperExampleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GMStepperExampleTests.swift; sourceTree = "<group>"; };
+		3116C0DC1DA4DD360015AC69 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		319C19321B4843EB005EFEE5 /* GMStepperExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GMStepperExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		319C19361B4843EB005EFEE5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		319C19371B4843EB005EFEE5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -35,21 +38,18 @@
 		319C193C1B4843EB005EFEE5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		319C193E1B4843EB005EFEE5 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		319C19411B4843EB005EFEE5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		319C19471B4843EB005EFEE5 /* GMStepperExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GMStepperExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		319C194C1B4843EB005EFEE5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		319C194D1B4843EB005EFEE5 /* GMStepperExampleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GMStepperExampleTests.swift; sourceTree = "<group>"; };
 		319C195B1B48445E005EFEE5 /* GMStepper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GMStepper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		319C192F1B4843EB005EFEE5 /* Frameworks */ = {
+		3116C0D51DA4DD360015AC69 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		319C19441B4843EB005EFEE5 /* Frameworks */ = {
+		319C192F1B4843EB005EFEE5 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -59,12 +59,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3116C0D91DA4DD360015AC69 /* GMStepperExampleTests */ = {
+			isa = PBXGroup;
+			children = (
+				3116C0DA1DA4DD360015AC69 /* GMStepperExampleTests.swift */,
+				3116C0DC1DA4DD360015AC69 /* Info.plist */,
+			);
+			path = GMStepperExampleTests;
+			sourceTree = "<group>";
+		};
 		319C19291B4843EB005EFEE5 = {
 			isa = PBXGroup;
 			children = (
 				319C195A1B48445E005EFEE5 /* GMStepper */,
 				319C19341B4843EB005EFEE5 /* GMStepperExample */,
-				319C194A1B4843EB005EFEE5 /* GMStepperExampleTests */,
+				3116C0D91DA4DD360015AC69 /* GMStepperExampleTests */,
 				319C19331B4843EB005EFEE5 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -73,7 +82,7 @@
 			isa = PBXGroup;
 			children = (
 				319C19321B4843EB005EFEE5 /* GMStepperExample.app */,
-				319C19471B4843EB005EFEE5 /* GMStepperExampleTests.xctest */,
+				3116C0D81DA4DD360015AC69 /* GMStepperExampleTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -99,23 +108,6 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		319C194A1B4843EB005EFEE5 /* GMStepperExampleTests */ = {
-			isa = PBXGroup;
-			children = (
-				319C194D1B4843EB005EFEE5 /* GMStepperExampleTests.swift */,
-				319C194B1B4843EB005EFEE5 /* Supporting Files */,
-			);
-			path = GMStepperExampleTests;
-			sourceTree = "<group>";
-		};
-		319C194B1B4843EB005EFEE5 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				319C194C1B4843EB005EFEE5 /* Info.plist */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
 		319C195A1B48445E005EFEE5 /* GMStepper */ = {
 			isa = PBXGroup;
 			children = (
@@ -128,6 +120,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		3116C0D71DA4DD360015AC69 /* GMStepperExampleTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3116C0DF1DA4DD360015AC69 /* Build configuration list for PBXNativeTarget "GMStepperExampleTests" */;
+			buildPhases = (
+				3116C0D41DA4DD360015AC69 /* Sources */,
+				3116C0D51DA4DD360015AC69 /* Frameworks */,
+				3116C0D61DA4DD360015AC69 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				3116C0DE1DA4DD360015AC69 /* PBXTargetDependency */,
+			);
+			name = GMStepperExampleTests;
+			productName = GMStepperExampleTests;
+			productReference = 3116C0D81DA4DD360015AC69 /* GMStepperExampleTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		319C19311B4843EB005EFEE5 /* GMStepperExample */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 319C19511B4843EB005EFEE5 /* Build configuration list for PBXNativeTarget "GMStepperExample" */;
@@ -145,24 +155,6 @@
 			productReference = 319C19321B4843EB005EFEE5 /* GMStepperExample.app */;
 			productType = "com.apple.product-type.application";
 		};
-		319C19461B4843EB005EFEE5 /* GMStepperExampleTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 319C19541B4843EB005EFEE5 /* Build configuration list for PBXNativeTarget "GMStepperExampleTests" */;
-			buildPhases = (
-				319C19431B4843EB005EFEE5 /* Sources */,
-				319C19441B4843EB005EFEE5 /* Frameworks */,
-				319C19451B4843EB005EFEE5 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				319C19491B4843EB005EFEE5 /* PBXTargetDependency */,
-			);
-			name = GMStepperExampleTests;
-			productName = GMStepperExampleTests;
-			productReference = 319C19471B4843EB005EFEE5 /* GMStepperExampleTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -170,20 +162,19 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftMigration = 0700;
-				LastSwiftUpdateCheck = 0700;
+				LastSwiftUpdateCheck = 0800;
 				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = "Gunay Mert Karadogan";
 				TargetAttributes = {
+					3116C0D71DA4DD360015AC69 = {
+						CreatedOnToolsVersion = 8.0;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 319C19311B4843EB005EFEE5;
+					};
 					319C19311B4843EB005EFEE5 = {
 						CreatedOnToolsVersion = 6.4;
 						DevelopmentTeam = 289M6XEDV4;
 						LastSwiftMigration = 0800;
-					};
-					319C19461B4843EB005EFEE5 = {
-						CreatedOnToolsVersion = 6.4;
-						DevelopmentTeam = 289M6XEDV4;
-						LastSwiftMigration = 0800;
-						TestTargetID = 319C19311B4843EB005EFEE5;
 					};
 				};
 			};
@@ -201,12 +192,19 @@
 			projectRoot = "";
 			targets = (
 				319C19311B4843EB005EFEE5 /* GMStepperExample */,
-				319C19461B4843EB005EFEE5 /* GMStepperExampleTests */,
+				3116C0D71DA4DD360015AC69 /* GMStepperExampleTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		3116C0D61DA4DD360015AC69 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		319C19301B4843EB005EFEE5 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -217,16 +215,18 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		319C19451B4843EB005EFEE5 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		3116C0D41DA4DD360015AC69 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3116C0DB1DA4DD360015AC69 /* GMStepperExampleTests.swift in Sources */,
+				3198AC771DA4DEE500311FB3 /* GMStepper.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		319C192E1B4843EB005EFEE5 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -237,22 +237,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		319C19431B4843EB005EFEE5 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				319C194E1B4843EB005EFEE5 /* GMStepperExampleTests.swift in Sources */,
-				3169DD3E1B496C33009791D1 /* GMStepper.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		319C19491B4843EB005EFEE5 /* PBXTargetDependency */ = {
+		3116C0DE1DA4DD360015AC69 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 319C19311B4843EB005EFEE5 /* GMStepperExample */;
-			targetProxy = 319C19481B4843EB005EFEE5 /* PBXContainerItemProxy */;
+			targetProxy = 3116C0DD1DA4DD360015AC69 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -276,6 +267,42 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		3116C0E01DA4DD360015AC69 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				INFOPLIST_FILE = GMStepperExampleTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.gmertk.GMStepperExampleTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GMStepperExample.app/GMStepperExample";
+			};
+			name = Debug;
+		};
+		3116C0E11DA4DD360015AC69 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				INFOPLIST_FILE = GMStepperExampleTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.gmertk.GMStepperExampleTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GMStepperExample.app/GMStepperExample";
+			};
+			name = Release;
+		};
 		319C194F1B4843EB005EFEE5 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -389,49 +416,18 @@
 			};
 			name = Release;
 		};
-		319C19551B4843EB005EFEE5 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				DEVELOPMENT_TEAM = 289M6XEDV4;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = GMStepperExampleTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.gunaymert.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GMStepperExample.app/GMStepperExample";
-			};
-			name = Debug;
-		};
-		319C19561B4843EB005EFEE5 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				DEVELOPMENT_TEAM = 289M6XEDV4;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = GMStepperExampleTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.gunaymert.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GMStepperExample.app/GMStepperExample";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		3116C0DF1DA4DD360015AC69 /* Build configuration list for PBXNativeTarget "GMStepperExampleTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3116C0E01DA4DD360015AC69 /* Debug */,
+				3116C0E11DA4DD360015AC69 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		319C192D1B4843EB005EFEE5 /* Build configuration list for PBXProject "GMStepperExample" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -446,15 +442,6 @@
 			buildConfigurations = (
 				319C19521B4843EB005EFEE5 /* Debug */,
 				319C19531B4843EB005EFEE5 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		319C19541B4843EB005EFEE5 /* Build configuration list for PBXNativeTarget "GMStepperExampleTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				319C19551B4843EB005EFEE5 /* Debug */,
-				319C19561B4843EB005EFEE5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
