@@ -298,6 +298,7 @@ import UIKit
         backgroundColor = buttonsBackgroundColor
         layer.cornerRadius = cornerRadius
         clipsToBounds = true
+        labelOriginalCenter = label.center
 
         NotificationCenter.default.addObserver(self, selector: #selector(GMStepper.reset), name: NSNotification.Name.UIApplicationWillResignActive, object: nil)
     }
