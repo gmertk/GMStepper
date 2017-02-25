@@ -5,6 +5,9 @@
 
 A stepper with a sliding label in the middle. Pan the label or tap the buttons. Check out the tutorial, [How to Build a Custom Stepper - Part 1](http://gmertk.github.io/custom-stepper-part-1/).
 
+**I'm looking for a maintainer who is willing to keep this library updated. Feel free to contact me.**
+
+
 ## Screenshot
 
 ![Screenshot_1.gif](https://raw.githubusercontent.com/gmertk/GMStepper/master/Screenshots/screenshot_1.gif)
