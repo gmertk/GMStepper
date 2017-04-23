@@ -121,6 +121,13 @@ import UIKit
             label.font = labelFont
         }
     }
+       /// Corner radius of the middle label. Defaults to 0.
+    @IBInspectable public var labelCornerRadius: CGFloat = 0 {
+        didSet {
+            label.layer.cornerRadius = labelCornerRadius
+        
+            }
+    }
 
     /// Corner radius of the stepper's layer. Defaults to 4.0.
     @IBInspectable public var cornerRadius: CGFloat = 4.0 {
@@ -205,6 +212,8 @@ import UIKit
         label.textColor = self.labelTextColor
         label.backgroundColor = self.labelBackgroundColor
         label.font = self.labelFont
+        label.layer.cornerRadius = self.labelCornerRadius
+        label.layer.masksToBounds = true
         label.isUserInteractionEnabled = true
         let panRecognizer = UIPanGestureRecognizer(target: self, action: #selector(GMStepper.handlePan))
         panRecognizer.maximumNumberOfTouches = 1
