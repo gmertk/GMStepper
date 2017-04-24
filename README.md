@@ -91,7 +91,7 @@ var limitHitAnimationColor: UIColor = UIColor(red:0.26, green:0.6, blue:0.87, al
 
 ## Authors
 
-* [Brent W.](https://github.com/bwhtmn) - Maintainer
+* [Brent Whitman](https://github.com/bwhtmn) - Maintainer
 * [Günay Mert Karadoğan](https://github.com/gmertk) - Creator
 
 ## License
