@@ -71,6 +71,9 @@ var labelBackgroundColor: UIColor = UIColor(red:0.26, green:0.6, blue:0.87, alph
 /// Font of the middle label. Defaults to AvenirNext-Bold, 25.0 points in size.
 var labelFont = UIFont(name: "AvenirNext-Bold", size: 25.0)
 
+/// Corner radius of the middle label's layer. Defaults to 0.0.
+var labelCornerRadius: CGFloat = 0.0
+
 /// Corner radius of the stepper's layer. Defaults to 4.0.
 var cornerRadius: CGFloat = 4.0
 
