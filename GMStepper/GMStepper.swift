@@ -356,7 +356,7 @@ import UIKit
 
 // MARK: Pan Gesture
 extension GMStepper {
-    func handlePan(gesture: UIPanGestureRecognizer) {
+    @objc func handlePan(gesture: UIPanGestureRecognizer) {
         switch gesture.state {
         case .began:
             leftButton.isEnabled = false
@@ -406,7 +406,7 @@ extension GMStepper {
         }
     }
 
-    func reset() {
+    @objc func reset() {
         panState = .Stable
         stepperState = .Stable
         resetTimer()
@@ -425,7 +425,7 @@ extension GMStepper {
 
 // MARK: Button Events
 extension GMStepper {
-    func leftButtonTouchDown(button: UIButton) {
+    @objc func leftButtonTouchDown(button: UIButton) {
         rightButton.isEnabled = false
         label.isUserInteractionEnabled = false
         resetTimer()
@@ -439,7 +439,7 @@ extension GMStepper {
 
     }
 
-    func rightButtonTouchDown(button: UIButton) {
+    @objc func rightButtonTouchDown(button: UIButton) {
         leftButton.isEnabled = false
         label.isUserInteractionEnabled = false
         resetTimer()
@@ -452,7 +452,7 @@ extension GMStepper {
         }
     }
 
-    func buttonTouchUp(button: UIButton) {
+    @objc func buttonTouchUp(button: UIButton) {
         reset()
     }
 }
@@ -497,7 +497,7 @@ extension GMStepper {
 
 // MARK: Timer
 extension GMStepper {
-    func handleTimerFire(timer: Timer) {
+    @objc func handleTimerFire(timer: Timer) {
         timerFireCount += 1
 
         if timerFireCount % timerFireCountModulo == 0 {
