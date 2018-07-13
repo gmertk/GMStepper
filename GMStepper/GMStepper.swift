@@ -15,26 +15,26 @@ import UIKit
         didSet {
             value = min(maximumValue, max(minimumValue, value))
 
-            let isInteger = floor(value) == value
-            
-            //
-            // If we have items, we will display them as steps
-            //
-            
-            if isInteger && stepValue == 1.0 && items.count > 0 {
-                label.text = items[Int(value)]
-            }
-            else if showIntegerIfDoubleIsInteger && isInteger {
-                label.text = String(stringInterpolationSegment: Int(value))
-            } else {
-                label.text = String(stringInterpolationSegment: value)
-            }
+            label.text = formattedValue
 
             if oldValue != value {
                 sendActions(for: .valueChanged)
             }
         }
     }
+    
+    private var formattedValue: String? {
+        let isInteger = Decimal(value).exponent >= 0
+        
+        // If we have items, we will display them as steps
+        if isInteger && stepValue == 1.0 && items.count > 0 {
+            return items[Int(value)]
+        }
+        else {
+            return formatter.string(from: NSNumber(value: value))
+        }
+    }
+
 
     /// Minimum value. Must be less than maximumValue. Defaults to 0.
     @objc @IBInspectable public var minimumValue: Double = 0 {
@@ -51,13 +51,21 @@ import UIKit
     }
 
     /// Step/Increment value as in UIStepper. Defaults to 1.
-    @objc @IBInspectable public var stepValue: Double = 1
+    @objc @IBInspectable public var stepValue: Double = 1 {
+        didSet {
+            setupNumberFormatter()
+        }
+    }
 
     /// The same as UIStepper's autorepeat. If true, holding on the buttons or keeping the pan gesture alters the value repeatedly. Defaults to true.
     @objc @IBInspectable public var autorepeat: Bool = true
 
     /// If the value is integer, it is shown without floating point.
-    @objc @IBInspectable public var showIntegerIfDoubleIsInteger: Bool = true
+    @objc @IBInspectable public var showIntegerIfDoubleIsInteger: Bool = true {
+        didSet {
+            setupNumberFormatter()
+        }
+    }
 
     /// Text on the left button. Be sure that it fits in the button. Defaults to "−".
     @objc @IBInspectable public var leftButtonText: String = "−" {
@@ -164,6 +172,9 @@ import UIKit
     /// Color of the flashing animation on the buttons in case the value hit the limit.
     @objc @IBInspectable public var limitHitAnimationColor: UIColor = UIColor(red:0.26, green:0.6, blue:0.87, alpha:1)
 
+    /// Formatter for displaying the current value
+    let formatter = NumberFormatter()
+    
     /**
         Width of the sliding animation. When buttons clicked, the middle label does a slide animation towards to the clicked button. Defaults to 5.
     */
@@ -204,11 +215,7 @@ import UIKit
     lazy var label: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
-        if self.showIntegerIfDoubleIsInteger && floor(self.value) == self.value {
-            label.text = String(stringInterpolationSegment: Int(self.value))
-        } else {
-            label.text = String(stringInterpolationSegment: self.value)
-        }
+        label.text = formattedValue
         label.textColor = self.labelTextColor
         label.backgroundColor = self.labelBackgroundColor
         label.font = self.labelFont
@@ -247,24 +254,7 @@ import UIKit
     
     @objc public var items : [String] = [] {
         didSet {
-            let isInteger = floor(value) == value
-            
-            //
-            // If we have items, we will display them as steps
-            //
-            
-            if isInteger && stepValue == 1.0 && items.count > 0 {
-                
-                var value = Int(self.value)
-                
-                if value >= items.count {
-                    value = items.count - 1
-                    self.value = Double(value)
-                }
-                else {
-                    label.text = items[value]
-                }
-            }
+            label.text = formattedValue
         }
     }
 
@@ -301,7 +291,7 @@ import UIKit
         setup()
     }
 
-    func setup() {
+    fileprivate func setup() {
         addSubview(leftButton)
         addSubview(rightButton)
         addSubview(label)
@@ -311,7 +301,17 @@ import UIKit
         clipsToBounds = true
         labelOriginalCenter = label.center
 
+        setupNumberFormatter()
+        
         NotificationCenter.default.addObserver(self, selector: #selector(GMStepper.reset), name: NSNotification.Name.UIApplicationWillResignActive, object: nil)
+    }
+    
+    func setupNumberFormatter() {
+        let decValue = Decimal(stepValue)
+        let digits = decValue.significantFractionalDecimalDigits
+        formatter.minimumIntegerDigits = 1
+        formatter.minimumFractionDigits = showIntegerIfDoubleIsInteger ? 0 : digits
+        formatter.maximumFractionDigits = digits
     }
 
     public override func layoutSubviews() {
@@ -332,8 +332,9 @@ import UIKit
             value += stepValue
         } else if stepperState == .ShouldDecrease {
             value -= stepValue
-        }   
+        }
     }
+    
 
     deinit {
         resetTimer()
@@ -516,6 +517,11 @@ extension GMStepper {
             timerFireCount = 0
         }
     }
+}
 
 
+extension Decimal {
+    var significantFractionalDecimalDigits: Int {
+        return max(-exponent, 0)
+    }
 }
