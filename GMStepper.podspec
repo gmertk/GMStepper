@@ -9,7 +9,7 @@ Pod::Spec.new do |s|
                          "Brent Whitman" => "brent@pathym.com" }
   s.source           = { :git => "https://github.com/gmertk/GMStepper.git", :tag => s.version.to_s }
   s.social_media_url = 'https://twitter.com/gunaymertk'
-  s.platform     = :ios, '8.4'
+  s.platform     = :ios, '8.0'
   s.requires_arc = true
   s.source_files = 'GMStepper/*.swift'
 end
