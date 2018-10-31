@@ -15,6 +15,8 @@ import UIKit
         didSet {
             value = min(maximumValue, max(minimumValue, value))
 
+            handleIsLimitReached()
+
             label.text = formattedValue
 
             if oldValue != value {
@@ -34,7 +36,6 @@ import UIKit
             return formatter.string(from: NSNumber(value: value))
         }
     }
-
 
     /// Minimum value. Must be less than maximumValue. Defaults to 0.
     @objc @IBInspectable public var minimumValue: Double = 0 {
@@ -81,6 +82,17 @@ import UIKit
         }
     }
 
+    /// Buttons text insets. Defaults to ".zero".
+    @objc @IBInspectable public var buttonsTextInsets: UIEdgeInsets = .zero {
+        didSet {
+            leftButton.contentEdgeInsets = buttonsTextInsets
+            rightButton.contentEdgeInsets = buttonsTextInsets
+        }
+    }
+
+    /// Left button limit opacity. Defaults to "0.4".
+    @objc @IBInspectable public var leftButtonLimitOpacity: CGFloat = 0.4
+
     /// Text color of the buttons. Defaults to white.
     @objc @IBInspectable public var buttonsTextColor: UIColor = UIColor.white {
         didSet {
@@ -99,6 +111,9 @@ import UIKit
             backgroundColor = buttonsBackgroundColor
         }
     }
+
+    /// Label tap closure
+    @objc public var didTouchLabel: ((Double) -> Void)?
 
     /// Font of the buttons. Defaults to AvenirNext-Bold, 20.0 points in size.
     @objc public var buttonsFont = UIFont(name: "AvenirNext-Bold", size: 20.0)! {
@@ -225,6 +240,8 @@ import UIKit
         let panRecognizer = UIPanGestureRecognizer(target: self, action: #selector(GMStepper.handlePan))
         panRecognizer.maximumNumberOfTouches = 1
         label.addGestureRecognizer(panRecognizer)
+        let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(GMStepper.handleLabelTap))
+        label.addGestureRecognizer(tapRecognizer)
         return label
     }()
 
@@ -296,6 +313,7 @@ import UIKit
         addSubview(rightButton)
         addSubview(label)
 
+        handleIsLimitReached()
         backgroundColor = buttonsBackgroundColor
         layer.cornerRadius = cornerRadius
         clipsToBounds = true
@@ -407,6 +425,10 @@ extension GMStepper {
         }
     }
 
+    @objc func handleLabelTap() {
+        didTouchLabel?(value)
+    }
+
     @objc func reset() {
         panState = .Stable
         stepperState = .Stable
@@ -437,7 +459,6 @@ extension GMStepper {
             stepperState = .ShouldDecrease
             animateSlideLeft()
         }
-
     }
 
     @objc func rightButtonTouchDown(button: UIButton) {
@@ -519,6 +540,15 @@ extension GMStepper {
     }
 }
 
+private extension GMStepper {
+
+    func handleIsLimitReached() {
+        let isLimitReached = value == minimumValue
+        leftButton.alpha = isLimitReached ? leftButtonLimitOpacity : 1
+        leftButton.isUserInteractionEnabled = !isLimitReached
+    }
+
+}
 
 extension Decimal {
     var significantFractionalDecimalDigits: Int {
