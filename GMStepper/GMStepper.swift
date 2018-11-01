@@ -68,39 +68,36 @@ import UIKit
         }
     }
 
-    /// Text on the left button. Be sure that it fits in the button. Defaults to "−".
-    @objc @IBInspectable public var leftButtonText: String = "−" {
+    /// Image on the left button. Defaults to nil.
+    @objc @IBInspectable public var leftButtonImage: UIImage? = nil {
         didSet {
-            leftButton.setTitle(leftButtonText, for: .normal)
+            leftButton.setImage(leftButtonImage, for: .normal)
         }
     }
 
-    /// Text on the right button. Be sure that it fits in the button. Defaults to "+".
-    @objc @IBInspectable public var rightButtonText: String = "+" {
+    /// Image on the right button. Defaults to nil.
+    @objc @IBInspectable public var rightButtonImage: UIImage? = nil {
         didSet {
-            rightButton.setTitle(rightButtonText, for: .normal)
+            rightButton.setImage(rightButtonImage, for: .normal)
         }
     }
 
-    /// Buttons text insets. Defaults to ".zero".
-    @objc @IBInspectable public var buttonsTextInsets: UIEdgeInsets = .zero {
+    /// Left button content insets. Defaults to ".zero".
+    @objc @IBInspectable public var leftButtonContentInsets: UIEdgeInsets = .zero {
         didSet {
-            leftButton.contentEdgeInsets = buttonsTextInsets
-            rightButton.contentEdgeInsets = buttonsTextInsets
+            leftButton.contentEdgeInsets = leftButtonContentInsets
+        }
+    }
+
+    /// Right button content insets. Defaults to ".zero".
+    @objc @IBInspectable public var rightButtonContentInsets: UIEdgeInsets = .zero {
+        didSet {
+            rightButton.contentEdgeInsets = rightButtonContentInsets
         }
     }
 
     /// Left button limit opacity. Defaults to "0.4".
     @objc @IBInspectable public var leftButtonLimitOpacity: CGFloat = 0.4
-
-    /// Text color of the buttons. Defaults to white.
-    @objc @IBInspectable public var buttonsTextColor: UIColor = UIColor.white {
-        didSet {
-            for button in [leftButton, rightButton] {
-                button.setTitleColor(buttonsTextColor, for: .normal)
-            }
-        }
-    }
 
     /// Background color of the buttons. Defaults to dark blue.
     @objc @IBInspectable public var buttonsBackgroundColor: UIColor = UIColor(red:0.21, green:0.5, blue:0.74, alpha:1) {
@@ -114,15 +111,6 @@ import UIKit
 
     /// Label tap closure
     @objc public var didTouchLabel: ((Double) -> Void)?
-
-    /// Font of the buttons. Defaults to AvenirNext-Bold, 20.0 points in size.
-    @objc public var buttonsFont = UIFont(name: "AvenirNext-Bold", size: 20.0)! {
-        didSet {
-            for button in [leftButton, rightButton] {
-                button.titleLabel?.font = buttonsFont
-            }
-        }
-    }
 
     /// Text color of the middle label. Defaults to white.
     @objc @IBInspectable public var labelTextColor: UIColor = UIColor.white {
@@ -203,10 +191,8 @@ import UIKit
 
     lazy var leftButton: UIButton = {
         let button = UIButton()
-        button.setTitle(self.leftButtonText, for: .normal)
-        button.setTitleColor(self.buttonsTextColor, for: .normal)
+        button.setImage(self.leftButtonImage, for: .normal)
         button.backgroundColor = self.buttonsBackgroundColor
-        button.titleLabel?.font = self.buttonsFont
         button.addTarget(self, action: #selector(GMStepper.leftButtonTouchDown), for: .touchDown)
         button.addTarget(self, action: #selector(GMStepper.buttonTouchUp), for: .touchUpInside)
         button.addTarget(self, action: #selector(GMStepper.buttonTouchUp), for: .touchUpOutside)
@@ -216,10 +202,8 @@ import UIKit
 
     lazy var rightButton: UIButton = {
         let button = UIButton()
-        button.setTitle(self.rightButtonText, for: .normal)
-        button.setTitleColor(self.buttonsTextColor, for: .normal)
+        button.setImage(self.rightButtonImage, for: .normal)
         button.backgroundColor = self.buttonsBackgroundColor
-        button.titleLabel?.font = self.buttonsFont
         button.addTarget(self, action: #selector(GMStepper.rightButtonTouchDown), for: .touchDown)
         button.addTarget(self, action: #selector(GMStepper.buttonTouchUp), for: .touchUpInside)
         button.addTarget(self, action: #selector(GMStepper.buttonTouchUp), for: .touchUpOutside)
