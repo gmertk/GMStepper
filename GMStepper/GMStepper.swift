@@ -111,6 +111,9 @@ import UIKit
 
     /// Label tap closure
     @objc public var didTouchLabel: ((Double) -> Void)?
+    
+    /// Value reached the minimum
+    @objc public var minimumReached: (() -> Void)?
 
     /// Text color of the middle label. Defaults to white.
     @objc @IBInspectable public var labelTextColor: UIColor = UIColor.white {
@@ -528,10 +531,12 @@ private extension GMStepper {
 
     func handleIsLimitReached() {
         let isLimitReached = value == minimumValue
+        if isLimitReached {
+            minimumReached?()
+        }
         leftButton.alpha = isLimitReached ? leftButtonLimitOpacity : 1
         leftButton.isUserInteractionEnabled = !isLimitReached
     }
-
 }
 
 extension Decimal {
