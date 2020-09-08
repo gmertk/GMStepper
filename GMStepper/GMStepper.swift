@@ -186,7 +186,7 @@ import UIKit
     /// Duration of the animation when the value hits the limit.
     let limitHitAnimationDuration = TimeInterval(0.1)
 
-    lazy var leftButton: UIButton = {
+    lazy public var leftButton: UIButton = {
         let button = UIButton()
         button.setTitle(self.leftButtonText, for: .normal)
         button.setTitleColor(self.buttonsTextColor, for: .normal)
@@ -199,7 +199,7 @@ import UIKit
         return button
     }()
 
-    lazy var rightButton: UIButton = {
+    lazy public var rightButton: UIButton = {
         let button = UIButton()
         button.setTitle(self.rightButtonText, for: .normal)
         button.setTitleColor(self.buttonsTextColor, for: .normal)
