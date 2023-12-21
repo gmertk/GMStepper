@@ -168,6 +168,13 @@ import UIKit
             setNeedsLayout()
         }
     }
+    
+    /// Color of the background of buttons in case the value hit the limit.
+    @objc @IBInspectable public var limitHitBackgroundColor: UIColor? {
+        didSet {
+            self.resetButtonsBackGroundColors()
+        }
+    }
 
     /// Color of the flashing animation on the buttons in case the value hit the limit.
     @objc @IBInspectable public var limitHitAnimationColor: UIColor = UIColor(red:0.26, green:0.6, blue:0.87, alpha:1)
@@ -300,6 +307,7 @@ import UIKit
         layer.cornerRadius = cornerRadius
         clipsToBounds = true
         labelOriginalCenter = label.center
+        self.resetButtonsBackGroundColors()
 
         setupNumberFormatter()
         
@@ -397,8 +405,7 @@ extension GMStepper {
                 stepperState = .Stable
                 resetTimer()
 
-                self.rightButton.backgroundColor = self.buttonsBackgroundColor
-                self.leftButton.backgroundColor = self.buttonsBackgroundColor
+                resetButtonsBackGroundColors()
             }
         case .ended, .cancelled, .failed:
             reset()
@@ -418,9 +425,31 @@ extension GMStepper {
 
         UIView.animate(withDuration: self.labelSlideDuration, animations: {
             self.label.center = self.labelOriginalCenter
-            self.rightButton.backgroundColor = self.buttonsBackgroundColor
-            self.leftButton.backgroundColor = self.buttonsBackgroundColor
+            self.resetButtonsBackGroundColors()
         })
+    }
+    
+    private func resetButtonsBackGroundColors() {
+        
+        func resetButtonsBackGroundColors(_ buttons:[UIButton]){
+            for button in buttons {
+                button.backgroundColor = buttonsBackgroundColor
+            }
+        }
+        
+        if let disableStateColor = self.limitHitBackgroundColor {
+            if self.value == self.minimumValue {
+                self.leftButton.backgroundColor = self.limitHitBackgroundColor
+                resetButtonsBackGroundColors([rightButton])
+            } else if value == self.maximumValue{
+                self.rightButton.backgroundColor = self.limitHitBackgroundColor
+                resetButtonsBackGroundColors([leftButton])
+            } else {
+                resetButtonsBackGroundColors([leftButton, rightButton])
+            }
+        } else {
+            resetButtonsBackGroundColors([leftButton, rightButton])
+        }
     }
 }
 

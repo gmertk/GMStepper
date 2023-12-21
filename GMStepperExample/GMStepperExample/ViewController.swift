@@ -13,6 +13,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var stepper: GMStepper!
     override func viewDidLoad() {
         super.viewDidLoad()
+//        stepper.limitHitBackgroundColor = UIColor.purple
         stepper.addTarget(self, action: #selector(ViewController.stepperValueChanged), for: .valueChanged)
     }
 
