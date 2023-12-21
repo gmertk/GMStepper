@@ -13,13 +13,24 @@ A stepper with a sliding label in the middle. Pan the label or tap the buttons. 
 
 ## Usage
 
-GMStepper is available through [CocoaPods](http://cocoapods.org). To install
-it, simply add the following lines to your Podfile:
+GMStepper is available through [CocoaPods](http://cocoapods.org) and [Swift Package Manager](https://www.swift.org/package-manager/).
+
+### Cocoapods
+
+To install using Cocoapods, simply add the following lines to your Podfile:
 
 ```ruby
 use_frameworks!
 pod "GMStepper"
 ```
+
+### Swift Package Manager
+
+To install using Swift Package Manager in XCode:
+
+- File > Swift Packages > Add Package Dependency
+- Add https://github.com/gmertk/GMStepper
+- Select "Up to Next Major" with "2.3"
 
 ## Setup
 
